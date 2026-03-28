@@ -139,7 +139,7 @@ public class PlayerMovementController : MonoBehaviour
         //if (GameManager.Instance.currentGameState != GameManager.GameState.Moving) return;
         //if (!_canMove) return;
         CheckAnimation();
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = !Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         if (grounded && !jumping)
         {
             jumps = maxJumps;

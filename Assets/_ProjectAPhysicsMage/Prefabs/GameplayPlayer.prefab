@@ -308,6 +308,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9054290034054238412}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1906130808478364173}
   m_SourcePrefab: {fileID: 100100000, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
 --- !u!4 &984182346015203889 stripped
 Transform:
@@ -472,9 +475,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2.0351014
+  m_Height: 1.2429459
   m_Direction: 1
-  m_Center: {x: 0, y: 1.0250835, z: 0}
+  m_Center: {x: 0, y: 0.6394609, z: 0}
 --- !u!95 &6603143982152622029
 Animator:
   serializedVersion: 7
@@ -644,9 +647,9 @@ MonoBehaviour:
     _EditorBoneScenePreviews: []
     _Editor_SelectedChain: 0
     _Editor_ChainCategory: 0
-    _EditorCategory: 4
+    _EditorCategory: 2
     _EditorMainCategory: 0
-    _EditorMotionCategory: 2
+    _EditorMotionCategory: 0
     AnchorUpdateMode: 0
     StoredReferenceTPose:
       BonePoses:
@@ -775,7 +778,7 @@ MonoBehaviour:
       customObjectList: []
       customEventsList: []
       variables: []
-    IsHumanoid: 0
+    IsHumanoid: 1
     dummyContainer: {fileID: 0}
     inBetweenPreGenerateMemory: []
     skeletonFillExtraBonesList: []
@@ -813,7 +816,7 @@ MonoBehaviour:
     JointLimitDamper: 0
     ConnectedMassMultiply: 0.5
     MassMultiplyOnFalling: 1
-    ConnectedMassTransition: 0
+    ConnectedMassTransition: 1
     CollidersPhysicMaterial: {fileID: 0}
     PhysicMaterialOnFall: {fileID: 0}
     MaxAngularVelocity: 50
@@ -2184,6 +2187,18 @@ MonoBehaviour:
       AlternativeTensorsOnFall: 0
       HardMatchMultiply: 1
     parentObject: {fileID: 4303757023163030372}
+--- !u!114 &1906130808478364173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c222bec13e3bc43b2bcc10bacba8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRagdollController
 --- !u!4 &5699148613944662051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -546029997918224874, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}

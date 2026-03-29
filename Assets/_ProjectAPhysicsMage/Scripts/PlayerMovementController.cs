@@ -55,6 +55,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Animator playerAnimator;
     private Rigidbody playerRb;
+    private PlayerRagdollController playerRagdollController;
 
     private int maxJumps = 2;
     private int jumps;
@@ -109,6 +110,7 @@ public class PlayerMovementController : MonoBehaviour
         calculatedTimeRotateBack = timeRotateBack;
         playerAnimator = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
+        playerRagdollController = GetComponent<PlayerRagdollController>();
         playerRb.freezeRotation = true;
         jumps = maxJumps;
 
@@ -138,6 +140,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         //if (GameManager.Instance.currentGameState != GameManager.GameState.Moving) return;
         //if (!_canMove) return;
+        if (playerRagdollController.IsStaggered) return;
         CheckAnimation();
         grounded = !Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         if (grounded && !jumping)
@@ -167,6 +170,7 @@ public class PlayerMovementController : MonoBehaviour
     private void FixedUpdate()
     {
         // if (GameManager.Instance.currentGameState != GameManager.GameState.Moving) return;
+        if (playerRagdollController.IsStaggered) return;
         if (dashing) return;
         if (diving) return;
         Move();

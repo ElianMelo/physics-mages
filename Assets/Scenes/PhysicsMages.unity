@@ -3319,13 +3319,110 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 4499330704776388145, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
-      propertyPath: m_Height
-      value: 1.2429459
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler._EditorCategory
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4499330704776388145, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
-      propertyPath: m_Center.y
-      value: 0.6394609
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].FeatureReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b0eaf438020ae840881cc454505e615, type: 2}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[0].Tooltip
+      value: Choose option which fits to your Get Up animation origin. Some get up
+        animations can start at hips center, some are starting at feet position.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[1].Tooltip
+      value: Apply calculated rotation to the base object
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[2].Tooltip
+      value: Define how target rotation should be calculated.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[0]._value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[0]._value.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[1]._value.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[2]._value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[2]._value.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[0].VariableName
+      value: Mode
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[1].VariableName
+      value: 'Apply Rotation:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[1].VariableType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[2].VariableName
+      value: Orientation Mode
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[0]._curve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[1]._curve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[2]._curve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[0]._curve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[1]._curve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[2]._curve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[0]._curve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[1]._curve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054290034054238412, guid: 33e2ba878bd339947b10726ca419d46a, type: 3}
+      propertyPath: handler.ExtraFeatures.Array.data[1].variables.Array.data[2]._curve.m_RotationOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -592,6 +592,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1876324144}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1876324145}
   m_SourcePrefab: {fileID: 100100000, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
 --- !u!1 &1876324140 stripped
 GameObject:
@@ -711,6 +714,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1876324145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876324140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a074b2972fd4ad4ab93632b1d239ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMagicController
+  _earthForward: {fileID: 0}
+  _earthAround: {fileID: 0}
+  _earthShield: {fileID: 0}
+  _waterForward: {fileID: 0}
+  _waterAround: {fileID: 0}
+  _waterShield: {fileID: 0}
+  _windForward: {fileID: 0}
+  _windAround: {fileID: 0}
+  _windShield: {fileID: 0}
 --- !u!1 &1947541035
 GameObject:
   m_ObjectHideFlags: 0

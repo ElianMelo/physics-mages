@@ -138,6 +138,22 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            playerRagdollController.TriggerFall(Vector3.up, 20f);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            playerRagdollController.TriggerFall(Vector3.left, 20f);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            playerRagdollController.TriggerFall(Vector3.right, 20f);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            playerRagdollController.TriggerFall(Vector3.down, 20f);
+        }
         //if (GameManager.Instance.currentGameState != GameManager.GameState.Moving) return;
         //if (!_canMove) return;
         if (playerRagdollController.IsStaggered) return;

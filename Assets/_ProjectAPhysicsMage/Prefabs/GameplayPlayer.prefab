@@ -647,7 +647,7 @@ MonoBehaviour:
     _EditorBoneScenePreviews: []
     _Editor_SelectedChain: 0
     _Editor_ChainCategory: 0
-    _EditorCategory: 2
+    _EditorCategory: 4
     _EditorMainCategory: 0
     _EditorMotionCategory: 0
     AnchorUpdateMode: 0
@@ -778,6 +778,53 @@ MonoBehaviour:
       customObjectList: []
       customEventsList: []
       variables: []
+    - CustomName: 
+      enabled: 1
+      FeatureReference: {fileID: 11400000, guid: 2b0eaf438020ae840881cc454505e615, type: 2}
+      customStringList: []
+      customObjectList: []
+      customEventsList: []
+      variables:
+      - VariableName: Mode
+        Tooltip: Choose option which fits to your Get Up animation origin. Some get
+          up animations can start at hips center, some are starting at feet position.
+        _value: {x: 1, y: 0, z: 0, w: 1}
+        _string: 
+        _curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _uObject: {fileID: 0}
+        VariableType: 0
+        _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
+      - VariableName: 'Apply Rotation:'
+        Tooltip: Apply calculated rotation to the base object
+        _value: {x: 1, y: 0, z: 0, w: 0}
+        _string: 
+        _curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _uObject: {fileID: 0}
+        VariableType: 1
+        _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
+      - VariableName: Orientation Mode
+        Tooltip: Define how target rotation should be calculated.
+        _value: {x: 1, y: 0, z: 0, w: 1}
+        _string: 
+        _curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        _uObject: {fileID: 0}
+        VariableType: 0
+        _rangeHelper: {x: 0, y: 0, z: 0, w: 0}
     IsHumanoid: 1
     dummyContainer: {fileID: 0}
     inBetweenPreGenerateMemory: []

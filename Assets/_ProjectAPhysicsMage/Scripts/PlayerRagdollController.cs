@@ -4,42 +4,40 @@ using UnityEngine;
 
 public class PlayerRagdollController : MonoBehaviour
 {
-    private RagdollAnimator2 ragdoll;
-    private Animator animator;
-    private Coroutine fallCoroutine;
-    private float staggerDuration = 2f;
+    private RagdollAnimator2 _ragdoll;
+    private Animator _animator;
+    private Coroutine _fallCoroutine;
+    private float _staggerDuration = 2f;
+
+    private Vector3 _direction;
+    private float _force;
 
     private bool _isStaggered;
     public bool IsStaggered => _isStaggered;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        ragdoll = GetComponent<RagdollAnimator2>();
+        _animator = GetComponent<Animator>();
+        _ragdoll = GetComponent<RagdollAnimator2>();
     }
 
-    void Update()
+    public void TriggerFall(Vector3 direction, float force)
     {
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            TriggerFall();
-        }
-    }
-
-    private void TriggerFall()
-    {
-        if (fallCoroutine != null) StopCoroutine(fallCoroutine);
-        fallCoroutine = StartCoroutine(FallCoroutine());
+        _direction = direction;
+        _force = force;
+        if (_fallCoroutine != null) StopCoroutine(_fallCoroutine);
+        _fallCoroutine = StartCoroutine(FallCoroutine());
     }
 
     private IEnumerator FallCoroutine()
     {
-        animator.enabled = false;
-        ragdoll.RA2Event_SwitchToFall();
+        _animator.enabled = false;
+        _ragdoll.User_AddAllBonesImpact(_direction * _force);
+        _ragdoll.RA2Event_SwitchToFall();
         _isStaggered = true;
-        yield return new WaitForSeconds(staggerDuration);
-        animator.enabled = true;
+        yield return new WaitForSeconds(_staggerDuration);
+        _animator.enabled = true;
         _isStaggered = false;
-        ragdoll.RA2Event_SwitchToStand();
+        _ragdoll.RA2Event_SwitchToStand();
     }
 }

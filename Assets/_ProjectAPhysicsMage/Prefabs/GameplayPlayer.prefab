@@ -311,6 +311,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1906130808478364173}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7471741888315537379}
   m_SourcePrefab: {fileID: 100100000, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
 --- !u!4 &984182346015203889 stripped
 Transform:
@@ -512,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a074b2972fd4ad4ab93632b1d239ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMagicController
-  vfxController: {fileID: 6390936242434887434}
+  playerVFXController: {fileID: 7471741888315537379}
 --- !u!114 &6390936242434887434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,6 +2249,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c222bec13e3bc43b2bcc10bacba8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRagdollController
+--- !u!114 &7471741888315537379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4befe9e0b816d864d953c842b0586e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayerController
+  _magicVFXToPrefabData:
+    _serializedList:
+    - Key:
+        element: 3
+        direction: 1
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 2687536529470468455, guid: a24e5c86fafb7fc4cbaf8152154a4c7a, type: 3}
+    - Key:
+        element: 3
+        direction: 2
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 935871336025105204, guid: 2b31588c944e65945a786af6b87f0a12, type: 3}
+    - Key:
+        element: 3
+        direction: 3
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 1
+        duration: 2
+        prefab: {fileID: 7074384664644497482, guid: bc7a714c244d08e44af2ab5484c4bdb9, type: 3}
+    - Key:
+        element: 1
+        direction: 1
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 6087953149221250931, guid: f33070ff186893c4a9b3cdd87e486c6b, type: 3}
+    - Key:
+        element: 1
+        direction: 2
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 5301163001004562867, guid: ef178c2f964c0394ab5d7d48593e0b60, type: 3}
+    - Key:
+        element: 1
+        direction: 3
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 1
+        duration: 2
+        prefab: {fileID: 320547501295149110, guid: d85bf8e3b4a60b5498257bd67dafa85d, type: 3}
+    - Key:
+        element: 2
+        direction: 1
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 9072988699323459587, guid: 35ddcef5a77eed346b9d7d08d33580d9, type: 3}
+    - Key:
+        element: 2
+        direction: 2
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 7922046864687353039, guid: 9d0ed88d12288124593937d4dbcd0116, type: 3}
+    - Key:
+        element: 2
+        direction: 3
+      Value:
+        vfxSpawnDelay: 0
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 1
+        duration: 2
+        prefab: {fileID: 328458691942880637, guid: 1ac7cf413880d6e48aab8a4797b8b494, type: 3}
 --- !u!4 &5699148613944662051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -546029997918224874, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}

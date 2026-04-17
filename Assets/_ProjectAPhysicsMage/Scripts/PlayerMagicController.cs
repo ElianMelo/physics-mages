@@ -28,7 +28,7 @@ public class PlayerMagicController : MonoBehaviour
     private MagicElement _element;
     private MagicDirection _direction;
 
-    [SerializeField] private VFXController vfxController;
+    [SerializeField] private VFXPlayerController playerVFXController;
 
     void Update()
     {
@@ -90,7 +90,7 @@ public class PlayerMagicController : MonoBehaviour
 
     private void CastMagic()
     {
-        vfxController.CastMagicVFX(_element, _direction);
+        playerVFXController.CastMagicVFX(_element, _direction);
         ChangeToElementPhase();
     }
 }

@@ -17,19 +17,6 @@ public class VFXController : MonoBehaviour
         public BaseVfx VFX;
     }
 
-    [System.Serializable]
-    public struct MagicVFX
-    {
-        public MagicElement element;
-        public MagicDirection direction;
-
-        public MagicVFX(MagicElement element, MagicDirection direction)
-        {
-            this.element = element;
-            this.direction = direction;
-        }
-    }
-
     [SerializedDictionary("MagicVFX", "VFXData")]
     public SerializedDictionary<MagicVFX, VFXData> _magicVFXToVFXData;
 

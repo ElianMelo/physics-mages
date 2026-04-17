@@ -29,7 +29,10 @@ public class VFXPlayerController : MonoBehaviour
         if (_currentMagicPrefabData.followPlayer)
             go.transform.SetParent(transform);
         if (_currentMagicPrefabData.initialPosition != null)
+        {
             go.transform.position = _currentMagicPrefabData.initialPosition.position;
+            go.transform.rotation = _currentMagicPrefabData.initialPosition.rotation;
+        }
         ParticleSystem particle = go.GetComponent<ParticleSystem>();
         if(particle != null) particle.Play();
         Destroy(go, _currentMagicPrefabData.duration);

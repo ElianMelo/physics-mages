@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum MagicElement
@@ -28,6 +29,8 @@ public class PlayerMagicController : MonoBehaviour
     private MagicElement _element;
     private MagicDirection _direction;
 
+    public static Action<MagicChoosePhase> OnMagicPhaseChange;
+
     [SerializeField] private VFXPlayerController playerVFXController;
 
     void Update()
@@ -42,7 +45,7 @@ public class PlayerMagicController : MonoBehaviour
             if (_currentPhase == MagicChoosePhase.Element)
             {
                 _element = MagicElement.Earth; 
-                ChangeToDirectionPhase();
+                ChangePhase(MagicChoosePhase.Direction);
             }
             else
             {
@@ -55,7 +58,7 @@ public class PlayerMagicController : MonoBehaviour
             if (_currentPhase == MagicChoosePhase.Element)
             {
                 _element = MagicElement.Water;
-                ChangeToDirectionPhase();
+                ChangePhase(MagicChoosePhase.Direction);
             }
             else
             {
@@ -68,7 +71,7 @@ public class PlayerMagicController : MonoBehaviour
             if (_currentPhase == MagicChoosePhase.Element)
             {
                 _element = MagicElement.Wind;
-                ChangeToDirectionPhase();
+                ChangePhase(MagicChoosePhase.Direction);
             }
             else
             {
@@ -78,19 +81,15 @@ public class PlayerMagicController : MonoBehaviour
         }
     }
 
-    private void ChangeToDirectionPhase()
+    private void ChangePhase(MagicChoosePhase newPhase)
     {
-        _currentPhase = MagicChoosePhase.Direction;
-    }
-
-    private void ChangeToElementPhase()
-    {
-        _currentPhase = MagicChoosePhase.Element;
+        _currentPhase = newPhase;
+        OnMagicPhaseChange?.Invoke(_currentPhase);
     }
 
     private void CastMagic()
     {
         playerVFXController.CastMagicVFX(_element, _direction);
-        ChangeToElementPhase();
+        ChangePhase(MagicChoosePhase.Element);
     }
 }

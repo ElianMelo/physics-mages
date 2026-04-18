@@ -14,7 +14,9 @@ public class PlayerFollower : MonoBehaviour
         while(player == null)
         {
             yield return new WaitForSeconds(1f);
-            player = FindFirstObjectByType<PlayerMovementController>().transform;
+            PlayerMovementController playerMovementController = FindFirstObjectByType<PlayerMovementController>();
+            if(playerMovementController != null)
+                player = playerMovementController.transform;
         }
     }
     private void FixedUpdate()

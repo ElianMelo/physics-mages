@@ -1,7 +1,10 @@
+using FishNet.Object;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMovementController : NetworkBehaviour
 {
     [Header("Movement Class")]
 
@@ -66,6 +69,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private IEnumerator SmoothlyLerpMoveSpeedCoroutine;
 
+    private PlayerInput playerInput;
+
     private bool _canMove;
 
     public bool CanMove { 
@@ -123,6 +128,13 @@ public class PlayerMovementController : MonoBehaviour
         // PlayerManager.Instance.OnPlayerDeath.AddListener(Death);
     }
 
+    public override void OnStartClient()
+    {
+        if (!IsOwner) return;
+        GetComponent<PlayerInput>().enabled = true;
+        playerInput = GetComponent<PlayerInput>();
+    }
+
     private void OnDestroy()
     {
         // PlayerManager.Instance.OnPlayerTakeDamage.RemoveListener(TakeDamage);
@@ -143,19 +155,20 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (!IsOwner) return;
+        if (Keyboard.current.iKey.wasPressedThisFrame)
         {
             playerRagdollController.TriggerFall(Vector3.up, 20f);
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Keyboard.current.jKey.wasPressedThisFrame)
         {
             playerRagdollController.TriggerFall(Vector3.left, 20f);
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Keyboard.current.lKey.wasPressedThisFrame)
         {
             playerRagdollController.TriggerFall(Vector3.right, 20f);
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Keyboard.current.kKey.wasPressedThisFrame)
         {
             playerRagdollController.TriggerFall(Vector3.down, 20f);
         }
@@ -206,17 +219,19 @@ public class PlayerMovementController : MonoBehaviour
         transform.forward = Vector3.SmoothDamp(transform.forward, moveDirection, ref smoothDampvelocity, smoothFollowMoveDirectionFactor);
     }
 
+    public void OnMove(InputValue value)
+    {
+        horizontalInput = value.Get<Vector2>().x;
+        verticalInput = value.Get<Vector2>().y;
+    }
+
     private void GetInputsActions()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-        if (Input.GetKeyDown(KeyCode.Space) && jumps > 0)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && jumps > 0)
         {
             jumps -= 1;
             Jump();
         }
-
     }
 
     private float desiredMoveSpeed;

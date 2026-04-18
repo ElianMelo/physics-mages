@@ -2559,6 +2559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628977f9935f98d46a11ba65eab06868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 0}
+  _networkObjectCache: {fileID: 0}
   rotationSpeed: 2
   rotationFactor: 1
   timeRotateBack: 0.5
@@ -2581,10 +2584,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxSlopeAngle: 50
-  orientation: {fileID: 0}
-  cameraOrientation: {fileID: 0}
-  slopeDetectorFront: {fileID: 0}
-  slopeDetectorBack: {fileID: 0}
   state: 0
   dashing: 0
   diving: 0

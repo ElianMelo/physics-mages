@@ -1,6 +1,8 @@
+using FishNet.Managing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +14,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameState currentGameState = GameState.Moving;
-
-    public UnityEvent OnStartPausing;
-    public UnityEvent OnStartMoving;
-    public UnityEvent OnStartDrawing;
+    [SerializeField] private NetworkManager _networkManager;
 
     public static GameManager Instance { get; private set; }
 
@@ -31,6 +30,35 @@ public class GameManager : MonoBehaviour
             currentGameState = currentGameState == GameState.Moving ? GameState.Drawing : GameState.Moving;
             SwitchState();
         }
+        if(Keyboard.current.digit9Key.wasPressedThisFrame)
+        {
+            StartHost();
+        }
+        if (Keyboard.current.digit0Key.wasPressedThisFrame)
+        {
+            StartClient();
+        }
+    }
+
+    public void StartHost()
+    {
+        StartServer();
+        StartClient();
+    }
+
+    public void StartServer()
+    {
+        _networkManager.ServerManager.StartConnection();
+    }
+
+    public void StartClient()
+    {
+        _networkManager.ClientManager.StartConnection();
+    }
+
+    public void SetIPAddress(string text)
+    {
+        _networkManager.TransportManager.Transport.SetClientAddress(text);
     }
 
     private void SwitchState()
@@ -39,15 +67,12 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Paused:
                 Cursor.lockState = CursorLockMode.None;
-                OnStartPausing?.Invoke();
                 break;
             case GameState.Moving:
                 Cursor.lockState = CursorLockMode.Locked;
-                OnStartMoving?.Invoke();
                 break;
             case GameState.Drawing:
                 Cursor.lockState = CursorLockMode.None;
-                OnStartDrawing?.Invoke();
                 break;
             default:
                 break;

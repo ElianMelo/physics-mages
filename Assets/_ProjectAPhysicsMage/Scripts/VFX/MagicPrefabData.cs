@@ -7,6 +7,7 @@ public class MagicPrefabData
     public Transform initialPosition;
     public bool followPlayer;
     public float duration;
+    public float scale;
     public GameObject prefab;
 }
 

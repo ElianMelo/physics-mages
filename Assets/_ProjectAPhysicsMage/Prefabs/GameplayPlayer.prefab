@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXCharacter
   _Anim: {fileID: 4278167418463692355}
   _BindingPoints: {fileID: 2879186870816869706}
-  _Target: {fileID: 1587015389523718084}
+  _Target: {fileID: 0}
 --- !u!95 &4278167418463692355
 Animator:
   serializedVersion: 7
@@ -85,14 +85,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PixPlays.ElementalVFX.BindingPoints
   _BindingPoints:
   - Type: 0
-    Point: {fileID: 5230426280846629112}
+    Point: {fileID: 0}
   - Type: 3
     Point: {fileID: 2880242346645065208}
   - Type: 5
     Point: {fileID: 2880242346645065208}
   - Type: 4
-    Point: {fileID: 477201882639187827}
---- !u!1 &1642229063068941701
+    Point: {fileID: 0}
+--- !u!1 &3046480412620489718
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,30 +100,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5230426280846629112}
+  - component: {fileID: 3668218671945351265}
   m_Layer: 0
-  m_Name: GroundVFXPoint
+  m_Name: ForwardVFXPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5230426280846629112
+--- !u!4 &3668218671945351265
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642229063068941701}
+  m_GameObject: {fileID: 3046480412620489718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.12, z: 1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3526833738137321950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4097825661696890042
+--- !u!1 &4648718834829572482
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,24 +131,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 477201882639187827}
+  - component: {fileID: 1865879742284111284}
   m_Layer: 0
-  m_Name: MiddleFrontVFXPoint
+  m_Name: GroundForwardVFXPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &477201882639187827
+--- !u!4 &1865879742284111284
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4097825661696890042}
+  m_GameObject: {fileID: 4648718834829572482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 1.193}
+  m_LocalPosition: {x: 0, y: 0.036, z: 1.108}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -185,7 +185,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3526833738137321950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7827990573957517969
+--- !u!1 &7150443866253141229
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,24 +193,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1587015389523718084}
+  - component: {fileID: 4175944487351169333}
   m_Layer: 0
-  m_Name: TargetVFX
+  m_Name: GroundVFXPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1587015389523718084
+--- !u!4 &4175944487351169333
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7827990573957517969}
+  m_GameObject: {fileID: 7150443866253141229}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 2.163}
+  m_LocalPosition: {x: 0, y: 0.036, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -276,16 +276,16 @@ PrefabInstance:
       addedObject: {fileID: 7233582547797660000}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5230426280846629112}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2880242346645065208}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 477201882639187827}
+      addedObject: {fileID: 3668218671945351265}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1587015389523718084}
+      addedObject: {fileID: 4175944487351169333}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1865879742284111284}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
@@ -2268,9 +2268,10 @@ MonoBehaviour:
         direction: 1
       Value:
         vfxSpawnDelay: 0
-        initialPosition: {fileID: 2880242346645065208}
+        initialPosition: {fileID: 3668218671945351265}
         followPlayer: 0
         duration: 2
+        scale: 2
         prefab: {fileID: 2687536529470468455, guid: a24e5c86fafb7fc4cbaf8152154a4c7a, type: 3}
     - Key:
         element: 3
@@ -2280,6 +2281,7 @@ MonoBehaviour:
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 0
         duration: 2
+        scale: 2
         prefab: {fileID: 935871336025105204, guid: 2b31588c944e65945a786af6b87f0a12, type: 3}
     - Key:
         element: 3
@@ -2289,24 +2291,27 @@ MonoBehaviour:
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
         duration: 2
+        scale: 2
         prefab: {fileID: 7074384664644497482, guid: bc7a714c244d08e44af2ab5484c4bdb9, type: 3}
     - Key:
         element: 1
         direction: 1
       Value:
         vfxSpawnDelay: 0
-        initialPosition: {fileID: 2880242346645065208}
+        initialPosition: {fileID: 1865879742284111284}
         followPlayer: 0
         duration: 2
+        scale: 2
         prefab: {fileID: 6087953149221250931, guid: f33070ff186893c4a9b3cdd87e486c6b, type: 3}
     - Key:
         element: 1
         direction: 2
       Value:
         vfxSpawnDelay: 0
-        initialPosition: {fileID: 2880242346645065208}
+        initialPosition: {fileID: 4175944487351169333}
         followPlayer: 0
         duration: 2
+        scale: 2
         prefab: {fileID: 5301163001004562867, guid: ef178c2f964c0394ab5d7d48593e0b60, type: 3}
     - Key:
         element: 1
@@ -2316,15 +2321,17 @@ MonoBehaviour:
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
         duration: 2
+        scale: 2
         prefab: {fileID: 320547501295149110, guid: d85bf8e3b4a60b5498257bd67dafa85d, type: 3}
     - Key:
         element: 2
         direction: 1
       Value:
         vfxSpawnDelay: 0
-        initialPosition: {fileID: 2880242346645065208}
+        initialPosition: {fileID: 3668218671945351265}
         followPlayer: 0
         duration: 2
+        scale: 2
         prefab: {fileID: 9072988699323459587, guid: 35ddcef5a77eed346b9d7d08d33580d9, type: 3}
     - Key:
         element: 2
@@ -2334,6 +2341,7 @@ MonoBehaviour:
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 0
         duration: 2
+        scale: 2
         prefab: {fileID: 7922046864687353039, guid: 9d0ed88d12288124593937d4dbcd0116, type: 3}
     - Key:
         element: 2
@@ -2343,6 +2351,7 @@ MonoBehaviour:
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
         duration: 2
+        scale: 2
         prefab: {fileID: 328458691942880637, guid: 1ac7cf413880d6e48aab8a4797b8b494, type: 3}
 --- !u!4 &5699148613944662051 stripped
 Transform:

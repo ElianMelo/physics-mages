@@ -33,6 +33,7 @@ public class VFXPlayerController : MonoBehaviour
             go.transform.position = _currentMagicPrefabData.initialPosition.position;
             go.transform.rotation = _currentMagicPrefabData.initialPosition.rotation;
         }
+        go.transform.localScale = new Vector3(_currentMagicPrefabData.scale, _currentMagicPrefabData.scale, _currentMagicPrefabData.scale);
         ParticleSystem particle = go.GetComponent<ParticleSystem>();
         if(particle != null) particle.Play();
         Destroy(go, _currentMagicPrefabData.duration);

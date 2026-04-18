@@ -1,8 +1,9 @@
 using AYellowpaper.SerializedCollections;
+using FishNet.Object;
 using System.Collections;
 using UnityEngine;
 
-public class VFXPlayerController : MonoBehaviour
+public class VFXPlayerController : NetworkBehaviour
 {
     private MagicVFX _currentMagicVFX;
     private MagicPrefabData _currentMagicPrefabData;
@@ -13,7 +14,9 @@ public class VFXPlayerController : MonoBehaviour
     {
         _currentMagicVFX = new MagicVFX(element, direction);
         GetDataByCurrentMagic();
-        StartCoroutine(SpawnVFX());
+        SpawnVFX(_currentMagicVFX, 
+            _currentMagicPrefabData.initialPosition.position, 
+            _currentMagicPrefabData.initialPosition.rotation);
     }
 
     private void GetDataByCurrentMagic()
@@ -22,20 +25,28 @@ public class VFXPlayerController : MonoBehaviour
         _currentMagicPrefabData = _magicVFXToPrefabData[_currentMagicVFX];
     }
 
-    IEnumerator SpawnVFX()
+    [ServerRpc]
+    private void SpawnVFX(MagicVFX currentMagicVFX, Vector3 position, Quaternion rotation)
     {
-        yield return new WaitForSeconds(_currentMagicPrefabData.vfxSpawnDelay);
-        var go = Instantiate(_currentMagicPrefabData.prefab);
+        NetworkObject networkObject;
+        _currentMagicPrefabData = _magicVFXToPrefabData[currentMagicVFX];
+        networkObject = Instantiate(_currentMagicPrefabData.prefab, position, rotation);
+        Spawn(networkObject);
         if (_currentMagicPrefabData.followPlayer)
-            go.transform.SetParent(transform);
+            networkObject.transform.SetParent(transform);
         if (_currentMagicPrefabData.initialPosition != null)
         {
-            go.transform.position = _currentMagicPrefabData.initialPosition.position;
-            go.transform.rotation = _currentMagicPrefabData.initialPosition.rotation;
+            networkObject.transform.position = _currentMagicPrefabData.initialPosition.position;
+            networkObject.transform.rotation = _currentMagicPrefabData.initialPosition.rotation;
         }
-        go.transform.localScale = new Vector3(_currentMagicPrefabData.scale, _currentMagicPrefabData.scale, _currentMagicPrefabData.scale);
-        ParticleSystem particle = go.GetComponent<ParticleSystem>();
+        ParticleSystem particle = networkObject.GetComponent<ParticleSystem>();
         if(particle != null) particle.Play();
-        Destroy(go, _currentMagicPrefabData.duration);
+        StartCoroutine(DespawnAfterSeconds(networkObject.gameObject, _currentMagicPrefabData.duration));
+    }
+
+    private IEnumerator DespawnAfterSeconds(GameObject entitySpawned, float secondsBeforeDespawn)
+    {
+        yield return new WaitForSeconds(secondsBeforeDespawn);
+        Despawn(entitySpawned);
     }
 }

@@ -1,24 +1,14 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerFollower : MonoBehaviour
 {
     private Transform player;
 
-    private void Start()
+    public void SetupPlayer(Transform playerTransform)
     {
-        StartCoroutine(FindPlayer());
+        player = playerTransform;
     }
-    private IEnumerator FindPlayer()
-    {
-        while(player == null)
-        {
-            yield return new WaitForSeconds(1f);
-            PlayerMovementController playerMovementController = FindFirstObjectByType<PlayerMovementController>();
-            if(playerMovementController != null)
-                player = playerMovementController.transform;
-        }
-    }
+
     private void FixedUpdate()
     {
         if (player == null) return;

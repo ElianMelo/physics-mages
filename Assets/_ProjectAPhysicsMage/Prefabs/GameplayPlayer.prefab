@@ -257,15 +257,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03205
+      value: -0.39787
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.91906
+      value: -0.022
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.30766
+      value: 0.12385
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       propertyPath: m_LocalRotation.w
@@ -560,6 +560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a074b2972fd4ad4ab93632b1d239ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMagicController
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 1673914528845359768}
+  _networkObjectCache: {fileID: 1673914528845359768}
   playerVFXController: {fileID: 7471741888315537379}
 --- !u!114 &6390936242434887434
 MonoBehaviour:
@@ -2306,98 +2309,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4befe9e0b816d864d953c842b0586e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayerController
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 1673914528845359768}
+  _networkObjectCache: {fileID: 1673914528845359768}
   _magicVFXToPrefabData:
     _serializedList:
     - Key:
         element: 3
         direction: 1
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 3668218671945351265}
         followPlayer: 0
         duration: 2
-        scale: 2
-        prefab: {fileID: 2687536529470468455, guid: a24e5c86fafb7fc4cbaf8152154a4c7a, type: 3}
+        prefab: {fileID: 4448867310044942114, guid: a24e5c86fafb7fc4cbaf8152154a4c7a, type: 3}
     - Key:
         element: 3
         direction: 2
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 0
         duration: 2
-        scale: 2
-        prefab: {fileID: 935871336025105204, guid: 2b31588c944e65945a786af6b87f0a12, type: 3}
+        prefab: {fileID: 9079461463646656299, guid: 2b31588c944e65945a786af6b87f0a12, type: 3}
     - Key:
         element: 3
         direction: 3
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
         duration: 2
-        scale: 2
-        prefab: {fileID: 7074384664644497482, guid: bc7a714c244d08e44af2ab5484c4bdb9, type: 3}
+        prefab: {fileID: 1690259015841541202, guid: bc7a714c244d08e44af2ab5484c4bdb9, type: 3}
     - Key:
         element: 1
         direction: 1
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 1865879742284111284}
         followPlayer: 0
         duration: 2
-        scale: 2
-        prefab: {fileID: 6087953149221250931, guid: f33070ff186893c4a9b3cdd87e486c6b, type: 3}
+        prefab: {fileID: 220459494885011575, guid: f33070ff186893c4a9b3cdd87e486c6b, type: 3}
     - Key:
         element: 1
         direction: 2
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 4175944487351169333}
         followPlayer: 0
         duration: 2
-        scale: 2
-        prefab: {fileID: 5301163001004562867, guid: ef178c2f964c0394ab5d7d48593e0b60, type: 3}
+        prefab: {fileID: 4709357970350784659, guid: ef178c2f964c0394ab5d7d48593e0b60, type: 3}
     - Key:
         element: 1
         direction: 3
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
         duration: 2
-        scale: 2
-        prefab: {fileID: 320547501295149110, guid: d85bf8e3b4a60b5498257bd67dafa85d, type: 3}
+        prefab: {fileID: 1178953370205012044, guid: d85bf8e3b4a60b5498257bd67dafa85d, type: 3}
     - Key:
         element: 2
         direction: 1
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 3668218671945351265}
         followPlayer: 0
         duration: 2
-        scale: 2
-        prefab: {fileID: 9072988699323459587, guid: 35ddcef5a77eed346b9d7d08d33580d9, type: 3}
+        prefab: {fileID: 585958372140572181, guid: 35ddcef5a77eed346b9d7d08d33580d9, type: 3}
     - Key:
         element: 2
         direction: 2
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 0
         duration: 2
-        scale: 2
-        prefab: {fileID: 7922046864687353039, guid: 9d0ed88d12288124593937d4dbcd0116, type: 3}
+        prefab: {fileID: 6569730060633869137, guid: 9d0ed88d12288124593937d4dbcd0116, type: 3}
     - Key:
         element: 2
         direction: 3
       Value:
-        vfxSpawnDelay: 0
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
         duration: 2
-        scale: 2
-        prefab: {fileID: 328458691942880637, guid: 1ac7cf413880d6e48aab8a4797b8b494, type: 3}
+        prefab: {fileID: 4559115991859758748, guid: 1ac7cf413880d6e48aab8a4797b8b494, type: 3}
 --- !u!114 &1673914528845359768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2425,12 +2413,12 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 0
+  <PrefabId>k__BackingField: 1
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 2376813930438937966
   SceneId: 0
   SerializedTransformProperties:
-    Position: {x: 0.03205, y: 0.91906, z: 0.30766}
+    Position: {x: -0.39787, y: -0.022, z: 0.12385}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     Scale: {x: 1, y: 1, z: 1}
     IsValid: 1
@@ -2442,6 +2430,8 @@ MonoBehaviour:
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
   - {fileID: 3083954293888268152}
+  - {fileID: 4077026458855445763}
+  - {fileID: 7471741888315537379}
   - {fileID: 6729651267411956853}
   - {fileID: 3703199344278442338}
   InitializedParentNetworkBehaviour: {fileID: 0}
@@ -2454,7 +2444,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584250773433434720
+  _initializedTimestamp: -8584250735673775094
 --- !u!114 &6729651267411956853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2467,7 +2457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6a39c46bf52104ba8efe3100bce3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Object.EmptyNetworkBehaviour
-  _componentIndexCache: 1
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1673914528845359768}
   _networkObjectCache: {fileID: 1673914528845359768}
 --- !u!114 &3703199344278442338
@@ -2482,7 +2472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
-  _componentIndexCache: 2
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1673914528845359768}
   _networkObjectCache: {fileID: 1673914528845359768}
   _componentConfiguration: 0

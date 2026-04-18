@@ -1,14 +1,13 @@
+using FishNet.Object;
 using UnityEngine;
 
 [System.Serializable]
 public class MagicPrefabData
 {
-    public float vfxSpawnDelay;
     public Transform initialPosition;
     public bool followPlayer;
     public float duration;
-    public float scale;
-    public GameObject prefab;
+    public NetworkObject prefab;
 }
 
 [System.Serializable]

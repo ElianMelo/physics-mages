@@ -131,8 +131,10 @@ public class PlayerMovementController : NetworkBehaviour
     public override void OnStartClient()
     {
         if (!IsOwner) return;
-        GetComponent<PlayerInput>().enabled = true;
         playerInput = GetComponent<PlayerInput>();
+        playerInput.enabled = true;
+        PlayerFollower playerFollower = FindAnyObjectByType<PlayerFollower>();
+        playerFollower.SetupPlayer(transform);
     }
 
     private void OnDestroy()

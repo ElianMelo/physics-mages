@@ -1,3 +1,4 @@
+using FishNet.Object;
 using System;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ public enum MagicChoosePhase
     Direction
 }
 
-public class PlayerMagicController : MonoBehaviour
+public class PlayerMagicController : NetworkBehaviour
 {
     private MagicChoosePhase _currentPhase = MagicChoosePhase.Element;
     private MagicElement _element;
@@ -35,6 +36,7 @@ public class PlayerMagicController : MonoBehaviour
 
     void Update()
     {
+        if (!IsOwner) return;
         GetMagicInput();
     }
 

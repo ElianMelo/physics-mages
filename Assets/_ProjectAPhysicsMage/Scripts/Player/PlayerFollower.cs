@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerFollower : MonoBehaviour
@@ -6,10 +7,19 @@ public class PlayerFollower : MonoBehaviour
 
     private void Start()
     {
-        player = FindFirstObjectByType<PlayerMovementController>().transform;
+        StartCoroutine(FindPlayer());
+    }
+    private IEnumerator FindPlayer()
+    {
+        while(player == null)
+        {
+            yield return new WaitForSeconds(1f);
+            player = FindFirstObjectByType<PlayerMovementController>().transform;
+        }
     }
     private void FixedUpdate()
     {
+        if (player == null) return;
         transform.position = player.position;
     }
 }

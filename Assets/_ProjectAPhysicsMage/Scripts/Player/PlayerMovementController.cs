@@ -43,10 +43,10 @@ public class PlayerMovementController : MonoBehaviour
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
 
-    public Transform orientation;
-    public Transform cameraOrientation;
-    public Transform slopeDetectorFront;
-    public Transform slopeDetectorBack;
+    private Transform orientation;
+    private Transform cameraOrientation;
+    private Transform slopeDetectorFront;
+    private Transform slopeDetectorBack;
 
     private float horizontalInput;
     private float verticalInput;
@@ -113,6 +113,11 @@ public class PlayerMovementController : MonoBehaviour
         playerRagdollController = GetComponent<PlayerRagdollController>();
         playerRb.freezeRotation = true;
         jumps = maxJumps;
+        PlayerFollower playerFollower = FindFirstObjectByType<PlayerFollower>();
+        orientation = playerFollower.transform;
+        cameraOrientation = playerFollower.transform;
+        slopeDetectorFront = playerFollower.transform;
+        slopeDetectorBack = playerFollower.transform;
 
         // PlayerManager.Instance.OnPlayerTakeDamage.AddListener(TakeDamage);
         // PlayerManager.Instance.OnPlayerDeath.AddListener(Death);

@@ -6,14 +6,16 @@ public class MagicController : NetworkBehaviour
 {
     public readonly SyncVar<MagicElement> element = new SyncVar<MagicElement>();
     public readonly SyncVar<MagicDirection> direction = new SyncVar<MagicDirection>();
+    public readonly SyncVar<int> ownerID = new SyncVar<int>();
     private void Awake() { }
 
     private void Update() { }
 
-    public void SetupMagicData(MagicElement element, MagicDirection direction)
+    public void SetupMagicData(MagicElement element, MagicDirection direction, int ownerID)
     {
         this.element.Value = element;
         this.direction.Value = direction;
+        this.ownerID.Value = ownerID;
     }
 
     private Vector3 GetDirectionBasedOnMagic(MagicElement element, MagicDirection direction, Vector3 otherPosition)
@@ -51,6 +53,7 @@ public class MagicController : NetworkBehaviour
     {
         PlayerRagdollController playerRagdollController = other.GetComponent<PlayerRagdollController>();
         if (playerRagdollController == null) return;
+        if (playerRagdollController.OwnerId == ownerID.Value) return;
         playerRagdollController.TriggerFall(GetDirectionBasedOnMagic(element.Value, direction.Value, other.transform.position).normalized, 20f);
         Physics.IgnoreCollision(GetComponent<Collider>(), other, true);
     }

@@ -1,18 +1,19 @@
 using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using UnityEngine;
 
 public class MagicController : NetworkBehaviour
 {
-    private MagicElement element;
-    private MagicDirection direction;
+    public readonly SyncVar<MagicElement> element = new SyncVar<MagicElement>();
+    public readonly SyncVar<MagicDirection> direction = new SyncVar<MagicDirection>();
     private void Awake() { }
 
     private void Update() { }
 
     public void SetupMagicData(MagicElement element, MagicDirection direction)
     {
-        this.element = element;
-        this.direction = direction;
+        this.element.Value = element;
+        this.direction.Value = direction;
     }
 
     private Vector3 GetDirectionBasedOnMagic(MagicElement element, MagicDirection direction, Vector3 otherPosition)
@@ -50,8 +51,7 @@ public class MagicController : NetworkBehaviour
     {
         PlayerRagdollController playerRagdollController = other.GetComponent<PlayerRagdollController>();
         if (playerRagdollController == null) return;
-        // GetDirectionBasedOnMagic(element, direction, other.transform.position)
-        playerRagdollController.TriggerFall(Vector3.up, 20f);
+        playerRagdollController.TriggerFall(GetDirectionBasedOnMagic(element.Value, direction.Value, other.transform.position).normalized, 20f);
         Physics.IgnoreCollision(GetComponent<Collider>(), other, true);
     }
 }

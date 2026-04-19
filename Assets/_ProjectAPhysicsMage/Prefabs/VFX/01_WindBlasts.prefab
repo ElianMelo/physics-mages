@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 7900395337596885599}
   - component: {fileID: 5306191695666412660}
   - component: {fileID: 4448867310044942114}
-  - component: {fileID: 4609542997315467033}
+  - component: {fileID: 4757545910574757269}
+  - component: {fileID: 6335274375598206110}
   m_Layer: 0
   m_Name: 01_WindBlasts
   m_TagString: Untagged
@@ -4918,7 +4919,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
-  - {fileID: 4609542997315467033}
+  - {fileID: 0}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -4930,7 +4931,7 @@ MonoBehaviour:
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
   _initializedTimestamp: -8584250736014259728
---- !u!114 &4609542997315467033
+--- !u!114 &4757545910574757269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4939,12 +4940,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 2687536529470468455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6a39c46bf52104ba8efe3100bce3f7, type: 3}
+  m_Script: {fileID: 11500000, guid: d0c6f98f9bed6154181f0733f3a84991, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Object.EmptyNetworkBehaviour
-  _componentIndexCache: 0
+  m_EditorClassIdentifier: Assembly-CSharp::NewNetworkBehaviourTemplate
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 4448867310044942114}
-  _networkObjectCache: {fileID: 4448867310044942114}
+  _networkObjectCache: {fileID: 0}
+--- !u!135 &6335274375598206110
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2687536529470468455}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.242308
+  m_Center: {x: 0, y: 0, z: 1.095519}
 --- !u!1 &2972295226934709784
 GameObject:
   m_ObjectHideFlags: 0

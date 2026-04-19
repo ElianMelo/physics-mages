@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6326299645948409808}
   - component: {fileID: 2186770465272597482}
   - component: {fileID: 4559115991859758748}
-  - component: {fileID: -4158110618747228310}
+  - component: {fileID: 1840326268197628271}
   m_Layer: 0
   m_Name: 09_WaterShields
   m_TagString: Untagged
@@ -177,7 +177,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
-  - {fileID: -4158110618747228310}
+  - {fileID: 0}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -189,7 +189,7 @@ MonoBehaviour:
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
   _initializedTimestamp: -8584250736014259728
---- !u!114 &-4158110618747228310
+--- !u!114 &1840326268197628271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,12 +198,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 328458691942880637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6a39c46bf52104ba8efe3100bce3f7, type: 3}
+  m_Script: {fileID: 11500000, guid: d0c6f98f9bed6154181f0733f3a84991, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Object.EmptyNetworkBehaviour
-  _componentIndexCache: 0
+  m_EditorClassIdentifier: Assembly-CSharp::MagicController
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 4559115991859758748}
-  _networkObjectCache: {fileID: 4559115991859758748}
+  _networkObjectCache: {fileID: 0}
 --- !u!1 &1056494054834865577
 GameObject:
   m_ObjectHideFlags: 0

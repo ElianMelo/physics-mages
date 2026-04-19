@@ -39917,7 +39917,8 @@ GameObject:
   - component: {fileID: 8787277210328862872}
   - component: {fileID: 7660112218374122367}
   - component: {fileID: 220459494885011575}
-  - component: {fileID: 7004147085324811753}
+  - component: {fileID: 3388870970948798007}
+  - component: {fileID: 1316785976705904084}
   m_Layer: 0
   m_Name: 04_EarthBlast
   m_TagString: Untagged
@@ -40008,7 +40009,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
-  - {fileID: 7004147085324811753}
+  - {fileID: 0}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -40020,7 +40021,7 @@ MonoBehaviour:
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
   _initializedTimestamp: -8584250736014259728
---- !u!114 &7004147085324811753
+--- !u!114 &3388870970948798007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40029,12 +40030,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 6087953149221250931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6a39c46bf52104ba8efe3100bce3f7, type: 3}
+  m_Script: {fileID: 11500000, guid: d0c6f98f9bed6154181f0733f3a84991, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Object.EmptyNetworkBehaviour
-  _componentIndexCache: 0
+  m_EditorClassIdentifier: Assembly-CSharp::MagicController
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 220459494885011575}
-  _networkObjectCache: {fileID: 220459494885011575}
+  _networkObjectCache: {fileID: 0}
+--- !u!135 &1316785976705904084
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6087953149221250931}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.2669907
+  m_Center: {x: 0, y: 0.12415528, z: 1.4214258}
 --- !u!1 &6095849383610211517
 GameObject:
   m_ObjectHideFlags: 0

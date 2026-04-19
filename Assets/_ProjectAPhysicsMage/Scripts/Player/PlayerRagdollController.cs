@@ -1,8 +1,9 @@
 using FIMSpace.FProceduralAnimation;
+using FishNet.Object;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerRagdollController : MonoBehaviour
+public class PlayerRagdollController : NetworkBehaviour
 {
     private RagdollAnimator2 _ragdoll;
     private Animator _animator;
@@ -27,6 +28,22 @@ public class PlayerRagdollController : MonoBehaviour
         _force = force;
         if (_fallCoroutine != null) StopCoroutine(_fallCoroutine);
         _fallCoroutine = StartCoroutine(FallCoroutine());
+        // TriggerFallServer(direction, force);
+    }
+
+    [ServerRpc]
+    private void TriggerFallServer(Vector3 direction, float force)
+    {
+        if (IsHostStarted) return;
+        _direction = direction;
+        _force = force;
+        if (_fallCoroutine != null) StopCoroutine(_fallCoroutine);
+        _fallCoroutine = StartCoroutine(FallCoroutine());
+    }
+    [ServerRpc]
+    private void TriggerFallClient(Vector3 direction, float force)
+    {
+
     }
 
     private IEnumerator FallCoroutine()

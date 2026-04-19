@@ -31,6 +31,7 @@ public class VFXPlayerController : NetworkBehaviour
         NetworkObject networkObject;
         _currentMagicPrefabData = _magicVFXToPrefabData[currentMagicVFX];
         networkObject = Instantiate(_currentMagicPrefabData.prefab, position, rotation);
+        networkObject.GetComponent<MagicController>().SetupMagicData(currentMagicVFX.element, currentMagicVFX.direction);
         Spawn(networkObject);
         if (_currentMagicPrefabData.followPlayer)
             networkObject.transform.SetParent(transform);

@@ -71,6 +71,8 @@ public class PlayerMovementController : NetworkBehaviour
     private PlayerInput playerInput;
 
     private bool _canMove;
+    private Vector3 forward;
+    private Camera mainCamera;
 
     public bool CanMove { 
         get
@@ -122,6 +124,7 @@ public class PlayerMovementController : NetworkBehaviour
         cameraOrientation = playerFollower.transform;
         slopeDetectorFront = playerFollower.transform;
         slopeDetectorBack = playerFollower.transform;
+        mainCamera = Camera.main;
 
         // PlayerManager.Instance.OnPlayerTakeDamage.AddListener(TakeDamage);
         // PlayerManager.Instance.OnPlayerDeath.AddListener(Death);
@@ -217,7 +220,9 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void SmoothRotateForward()
     {
-        transform.forward = Vector3.SmoothDamp(transform.forward, moveDirection, ref smoothDampvelocity, smoothFollowMoveDirectionFactor);
+        forward = mainCamera.transform.forward;
+        forward.y = 0;
+        transform.forward = Vector3.SmoothDamp(transform.forward, forward, ref smoothDampvelocity, smoothFollowMoveDirectionFactor);
     }
 
     public void OnMove(InputValue value)

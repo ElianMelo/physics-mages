@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : NetworkBehaviour
 {
+    [SerializeField] private GameObject playerHealthCanvas;
     [SerializeField] private Image playerHealthImage;
     [SerializeField] private float maxHealth;    
     private readonly SyncVar<float> playerHealth = new SyncVar<float>(new SyncTypeSettings(1f));
@@ -14,6 +15,7 @@ public class PlayerController : NetworkBehaviour
         playerHealth.Value = maxHealth;
         playerHealth.OnChange += OnHealthChange;
         if (!IsOwner) return;
+        playerHealthCanvas.SetActive(false);
     }
 
     private void OnHealthChange(float prev, float next, bool asServer)

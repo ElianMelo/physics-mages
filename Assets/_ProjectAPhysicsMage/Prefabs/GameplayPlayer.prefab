@@ -1396,6 +1396,8 @@ MonoBehaviour:
   walkSpeed: 6
   sprintSpeed: 10
   dashSpeed: 20
+  dashDuration: 0.25
+  dashCooldown: 1
   dashSpeedChangeFactor: 8
   diveSpeed: 14
   diveSpeedChangeFactor: 6
@@ -1406,7 +1408,6 @@ MonoBehaviour:
   airMultiplier: 0.4
   maxSlopeAngle: 45
   smoothFollowMoveDirectionFactor: 0.08
-  dashing: 0
   diving: 0
   state: 0
 --- !u!95 &6603143982152622029
@@ -3422,6 +3423,7 @@ MonoBehaviour:
   _componentIndexCache: 255
   _addedNetworkObject: {fileID: 1673914528845359768}
   _networkObjectCache: {fileID: 0}
+  playerHealthCanvas: {fileID: 7303437000027249280}
   playerHealthImage: {fileID: 6508350436994615202}
   maxHealth: 100
 --- !u!143 &6840311090792073761

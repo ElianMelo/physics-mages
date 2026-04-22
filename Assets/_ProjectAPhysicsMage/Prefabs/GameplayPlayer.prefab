@@ -1271,12 +1271,6 @@ PrefabInstance:
       addedObject: {fileID: 3083954293888268152}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5706834678698575681}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4499330704776388145}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6603143982152622029}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
@@ -1305,6 +1299,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3225008697146876222}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6840311090792073761}
   m_SourcePrefab: {fileID: 100100000, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
 --- !u!4 &984182346015203889 stripped
 Transform:
@@ -1396,81 +1393,22 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1673914528845359768}
   _networkObjectCache: {fileID: 1673914528845359768}
-  rotationSpeed: 2
-  rotationFactor: 1
-  timeRotateBack: 0.5
-  diveExitForce: 20
-  smoothFollowMoveDirectionFactor: 0.01
-  smoothFrictionFactor: 0.1
-  walkSpeed: 4
-  sprintSpeed: 4
-  dashSpeed: 10
-  dashSpeedChangeFactor: 100
-  diveSpeed: 10
-  diveSpeedChangeFactor: 100
-  maxYSpeed: 0
-  groundDrag: 4
-  airDrag: 0
-  jumpForce: 7
-  airMultiplier: 4
-  playerHeight: 1
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  maxSlopeAngle: 50
-  state: 0
+  walkSpeed: 6
+  sprintSpeed: 10
+  dashSpeed: 20
+  dashSpeedChangeFactor: 8
+  diveSpeed: 14
+  diveSpeedChangeFactor: 6
+  jumpForce: 10
+  gravity: 20
+  groundDrag: 10
+  airDrag: 1
+  airMultiplier: 0.4
+  maxSlopeAngle: 45
+  smoothFollowMoveDirectionFactor: 0.08
   dashing: 0
   diving: 0
---- !u!54 &5706834678698575681
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &4499330704776388145
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.2429459
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.6394609, z: 0}
+  state: 0
 --- !u!95 &6603143982152622029
 Animator:
   serializedVersion: 7
@@ -3486,6 +3424,31 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 0}
   playerHealthImage: {fileID: 6508350436994615202}
   maxHealth: 100
+--- !u!143 &6840311090792073761
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.81
+  m_Radius: 0.34
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &5699148613944662051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -546029997918224874, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}

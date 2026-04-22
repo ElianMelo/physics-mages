@@ -2522,6 +2522,7 @@ GameObject:
   - component: {fileID: 6959760329775457764}
   - component: {fileID: 8885174263394136454}
   - component: {fileID: 7602947685666533490}
+  - component: {fileID: 5832487943585610262}
   m_Layer: 0
   m_Name: PlayerOLD
   m_TagString: Untagged
@@ -2562,31 +2563,22 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 0}
   _networkObjectCache: {fileID: 0}
-  rotationSpeed: 2
-  rotationFactor: 1
-  timeRotateBack: 0.5
-  diveExitForce: 20
-  smoothFollowMoveDirectionFactor: 0.01
-  smoothFrictionFactor: 0.1
   walkSpeed: 4
   sprintSpeed: 4
   dashSpeed: 10
   dashSpeedChangeFactor: 100
   diveSpeed: 10
   diveSpeedChangeFactor: 100
-  maxYSpeed: 0
+  jumpForce: 7
+  gravity: 20
   groundDrag: 4
   airDrag: 0
-  jumpForce: 7
   airMultiplier: 4
-  playerHeight: 0.1
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
   maxSlopeAngle: 50
-  state: 0
+  smoothFollowMoveDirectionFactor: 0.01
   dashing: 0
   diving: 0
+  state: 0
 --- !u!54 &6959760329775457764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2659,6 +2651,31 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!143 &5832487943585610262
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608848550261930579}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1737882205069117767
 GameObject:
   m_ObjectHideFlags: 0

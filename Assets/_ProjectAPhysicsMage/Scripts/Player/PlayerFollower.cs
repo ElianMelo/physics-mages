@@ -9,7 +9,7 @@ public class PlayerFollower : MonoBehaviour
         player = playerTransform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (player == null) return;
         transform.position = player.position;

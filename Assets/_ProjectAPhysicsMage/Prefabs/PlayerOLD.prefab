@@ -2566,6 +2566,8 @@ MonoBehaviour:
   walkSpeed: 4
   sprintSpeed: 4
   dashSpeed: 10
+  dashDuration: 0.25
+  dashCooldown: 1
   dashSpeedChangeFactor: 100
   diveSpeed: 10
   diveSpeedChangeFactor: 100
@@ -2573,10 +2575,9 @@ MonoBehaviour:
   gravity: 20
   groundDrag: 4
   airDrag: 0
-  airMultiplier: 4
+  airMultiplier: 1
   maxSlopeAngle: 50
   smoothFollowMoveDirectionFactor: 0.01
-  dashing: 0
   diving: 0
   state: 0
 --- !u!54 &6959760329775457764

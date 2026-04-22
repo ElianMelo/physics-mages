@@ -3,37 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// PlayerMovementController — Unity 6.3 LTS
-/// Uses CharacterController instead of Rigidbody.
-///
-/// ─── Recommended CharacterController component settings ───────────────────────
-///   Slope Limit      : 45
-///   Step Offset      : 0.3
-///   Skin Width        : 0.08
-///   Min Move Distance : 0.001
-///   Center           : (0, 1, 0)      ← matches a 2-unit tall capsule
-///   Radius           : 0.4
-///   Height           : 2.0
-/// ──────────────────────────────────────────────────────────────────────────────
-///
-/// ─── Recommended Inspector values (serialised fields below) ──────────────────
-///   walkSpeed                 : 6
-///   sprintSpeed               : 10          (unused until sprint action added)
-///   dashSpeed                 : 20
-///   dashSpeedChangeFactor     : 8
-///   diveSpeed                 : 14
-///   diveSpeedChangeFactor     : 6
-///   jumpForce                 : 6           (initial vertical speed, m/s)
-///   gravity                   : 20          (downward acceleration, m/s²)
-///   airMultiplier             : 0.4
-///   groundDrag                : 10          (horizontal deceleration on ground)
-///   airDrag                   : 1           (horizontal deceleration in air)
-///   smoothFollowMoveDirection : 0.08
-///   rotationSpeed             : 720         (deg/s, used as SmoothDamp maxSpeed)
-///   maxSlopeAngle             : 45
-/// ──────────────────────────────────────────────────────────────────────────────
-/// </summary>
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementController : NetworkBehaviour
 {
@@ -42,8 +11,10 @@ public class PlayerMovementController : NetworkBehaviour
     public float walkSpeed = 6f;
     public float sprintSpeed = 10f;
 
-    [Header("Dash")]
+    [Header("Dash  (Left Shift)")]
     public float dashSpeed = 20f;
+    public float dashDuration = 0.25f;
+    public float dashCooldown = 1.0f;
     public float dashSpeedChangeFactor = 8f;
 
     [Header("Dive")]
@@ -51,12 +22,12 @@ public class PlayerMovementController : NetworkBehaviour
     public float diveSpeedChangeFactor = 6f;
 
     [Header("Jump & Gravity")]
-    public float jumpForce = 6f;   // m/s initial vertical velocity
-    public float gravity = 20f;  // m/s² downward acceleration
+    public float jumpForce = 6f;
+    public float gravity = 20f;
 
     [Header("Drag")]
-    public float groundDrag = 10f;    // horizontal deceleration when grounded
-    public float airDrag = 1f;     // horizontal deceleration in air
+    public float groundDrag = 10f;
+    public float airDrag = 1f;
 
     [Header("Air Control")]
     [Range(0f, 1f)]
@@ -76,18 +47,19 @@ public class PlayerMovementController : NetworkBehaviour
     private Camera _mainCamera;
 
     private Vector2 _inputDir;
-    private Vector3 _velocity;          // full 3-D velocity tracked manually
+    private Vector3 _velocity;
     private Vector3 _smoothDampVel;
 
     private bool _canMove = true;
     private bool _jumping;
+    private bool _dashRequested;
+    private float _dashCooldownTimer;
 
-    public bool dashing;
+    public bool dashing { get; private set; }
     public bool diving;
 
     // ─── Movement state ──────────────────────────────────────────────────────
     public MovementState state;
-
     public enum MovementState { idle, running, dashing, airing }
 
     // ─── Speed lerp ──────────────────────────────────────────────────────────
@@ -116,11 +88,7 @@ public class PlayerMovementController : NetworkBehaviour
     public bool CanMove
     {
         get => _canMove;
-        set
-        {
-            _canMove = value;
-            if (!value) ResetMovement();
-        }
+        set { _canMove = value; if (!value) ResetMovement(); }
     }
 
     // =========================================================================
@@ -143,7 +111,6 @@ public class PlayerMovementController : NetworkBehaviour
     public override void OnStartClient()
     {
         if (!IsOwner) return;
-
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.enabled = true;
 
@@ -159,7 +126,6 @@ public class PlayerMovementController : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        // ── Debug ragdoll keys (keep parity with original) ──────────────────
         if (Keyboard.current.iKey.wasPressedThisFrame) _ragdoll.TriggerFall(Vector3.up, 20f);
         if (Keyboard.current.jKey.wasPressedThisFrame) _ragdoll.TriggerFall(Vector3.left, 20f);
         if (Keyboard.current.lKey.wasPressedThisFrame) _ragdoll.TriggerFall(Vector3.right, 20f);
@@ -167,7 +133,14 @@ public class PlayerMovementController : NetworkBehaviour
 
         if (_ragdoll.IsStaggered) return;
 
+        _dashCooldownTimer -= Time.deltaTime;
+
         HandleJumpInput();
+
+        if (_dashRequested && !dashing && !diving && _dashCooldownTimer <= 0f)
+            StartCoroutine(DashCoroutine());
+        _dashRequested = false;
+
         StateHandler();
         UpdateAnimations();
     }
@@ -187,8 +160,21 @@ public class PlayerMovementController : NetworkBehaviour
     // =========================================================================
 
     public void OnMove(InputValue value)
+        => _inputDir = value.Get<Vector2>();
+
+    public void OnJump(InputValue value)
     {
-        _inputDir = value.Get<Vector2>();
+        if (value.isPressed && IsGrounded && !_jumping)
+            Jump();
+    }
+
+    /// <summary>
+    /// Bound to the "Dash" Button action (Left Shift / gamepad west button).
+    /// Add a "Dash" action to your Input Action Asset → Player action map.
+    /// </summary>
+    public void OnDash(InputValue value)
+    {
+        if (value.isPressed) _dashRequested = true;
     }
 
     // =========================================================================
@@ -198,9 +184,7 @@ public class PlayerMovementController : NetworkBehaviour
     private void HandleJumpInput()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame && IsGrounded && !_jumping)
-        {
             Jump();
-        }
     }
 
     private void Jump()
@@ -215,6 +199,56 @@ public class PlayerMovementController : NetworkBehaviour
     {
         yield return new WaitForSeconds(0.35f);
         _jumping = false;
+    }
+
+    // =========================================================================
+    //  Dash
+    // =========================================================================
+
+    /// <summary>
+    /// Dashes in the current input direction (or character forward when idle).
+    /// Speed follows a Sin curve — ramps up then eases out for a punchy feel.
+    /// After the dash, walkSpeed momentum bleeds naturally into locomotion via
+    /// the existing keepMomentum / SmoothlyLerpMoveSpeed path.
+    /// </summary>
+    private IEnumerator DashCoroutine()
+    {
+        dashing = true;
+        _dashCooldownTimer = dashCooldown;
+        _animator.SetTrigger(AnimDash);
+
+        // Dash direction is camera-relative, same as normal movement
+        Vector3 camForward = _mainCamera.transform.forward;
+        camForward.y = 0f;
+        camForward.Normalize();
+        Vector3 camRight = Vector3.Cross(Vector3.up, camForward);
+
+        Vector3 dashDir = _inputDir.sqrMagnitude > 0.01f
+            ? (camForward * _inputDir.y + camRight * _inputDir.x).normalized
+            : transform.forward;
+
+        // Snap body to face the dash direction instantly
+        transform.forward = dashDir;
+
+        float elapsed = 0f;
+        while (elapsed < dashDuration)
+        {
+            // Sin curve: 0 → peak → 0 — punchy burst with natural ease-out
+            float t = elapsed / dashDuration;
+            float speed = Mathf.Lerp(walkSpeed, dashSpeed, Mathf.Sin(t * Mathf.PI));
+
+            Vector3 move = dashDir * (speed * Time.deltaTime);
+            move.y = (IsGrounded ? -2f : _velocity.y) * Time.deltaTime;
+            _cc.Move(move);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Feed residual momentum into the locomotion system
+        _velocity.x = dashDir.x * walkSpeed;
+        _velocity.z = dashDir.z * walkSpeed;
+        dashing = false;
     }
 
     // =========================================================================
@@ -287,42 +321,34 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void Move()
     {
-        // ── Horizontal input ────────────────────────────────────────────────
         Vector3 camForward = _mainCamera.transform.forward;
         camForward.y = 0f;
         camForward.Normalize();
-        Vector3 camRight = Vector3.Cross(Vector3.up, camForward);   // no .right to stay flat
+        Vector3 camRight = Vector3.Cross(Vector3.up, camForward);
 
         Vector3 wishDir = camForward * _inputDir.y + camRight * _inputDir.x;
 
-        // ── Slope projection ────────────────────────────────────────────────
         if (IsGrounded && OnSlope(out Vector3 slopeNormal))
             wishDir = Vector3.ProjectOnPlane(wishDir, slopeNormal).normalized;
 
-        // ── Apply horizontal velocity ────────────────────────────────────────
         float drag = IsGrounded ? groundDrag : airDrag;
         float speedFactor = IsGrounded ? 1f : airMultiplier;
 
         Vector3 horizontal = new Vector3(_velocity.x, 0f, _velocity.z);
         horizontal += wishDir * (_moveSpeed * speedFactor * Time.fixedDeltaTime * 10f);
 
-        // Speed cap
         if (horizontal.magnitude > _moveSpeed)
             horizontal = horizontal.normalized * _moveSpeed;
 
-        // Drag
         horizontal = Vector3.MoveTowards(horizontal, Vector3.zero, drag * Time.fixedDeltaTime);
-
         _velocity.x = horizontal.x;
         _velocity.z = horizontal.z;
 
-        // ── Gravity ──────────────────────────────────────────────────────────
         if (IsGrounded && _velocity.y < 0f)
-            _velocity.y = -2f;          // small negative keeps CC grounded on slopes
+            _velocity.y = -2f;
 
         _velocity.y -= gravity * Time.fixedDeltaTime;
 
-        // ── Move ─────────────────────────────────────────────────────────────
         _cc.Move(_velocity * Time.fixedDeltaTime);
     }
 
@@ -335,12 +361,10 @@ public class PlayerMovementController : NetworkBehaviour
         normal = Vector3.up;
         if (_jumping) return false;
 
-        // SphereCast from the base of the capsule
         float checkDist = (_cc.height * 0.5f) + _cc.stepOffset + 0.05f;
         if (Physics.SphereCast(transform.position + _cc.center,
                                _cc.radius * 0.9f,
-                               Vector3.down, out RaycastHit hit,
-                               checkDist))
+                               Vector3.down, out RaycastHit hit, checkDist))
         {
             float angle = Vector3.Angle(Vector3.up, hit.normal);
             if (angle > 0f && angle < maxSlopeAngle)
@@ -358,7 +382,7 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void SmoothRotateToCamera()
     {
-        if (_inputDir.sqrMagnitude < 0.01f) return;     // only rotate while moving
+        if (_inputDir.sqrMagnitude < 0.01f) return;
 
         Vector3 camForward = _mainCamera.transform.forward;
         camForward.y = 0f;
@@ -378,7 +402,7 @@ public class PlayerMovementController : NetworkBehaviour
         bool isRunning = state == MovementState.running && _inputDir.sqrMagnitude > 0.01f;
 
         _animator.SetBool(AnimRunning, isRunning);
-        _animator.SetBool(AnimDashing, state == MovementState.dashing);
+        _animator.SetBool(AnimDashing, dashing);
         _animator.SetBool(AnimFalling, state == MovementState.airing);
         _animator.SetFloat(AnimVerticalVelocity,
             Mathf.Lerp(0f, 1f, Mathf.Abs(_velocity.y) / 20f));
@@ -391,11 +415,11 @@ public class PlayerMovementController : NetworkBehaviour
     private void ResetMovement()
     {
         _inputDir = Vector2.zero;
-        _velocity = new Vector3(0f, _velocity.y, 0f);  // preserve gravity
+        _velocity = new Vector3(0f, _velocity.y, 0f);
     }
 
     // =========================================================================
-    //  Public API (called by dash/dive controllers, combat, etc.)
+    //  Public API
     // =========================================================================
 
     public void CallDashAnimation() => _animator.SetTrigger(AnimDash);
@@ -403,18 +427,12 @@ public class PlayerMovementController : NetworkBehaviour
     public void TakeDamage() => _animator.SetTrigger(AnimTakeDamage);
     public void Death() => _animator.SetTrigger(AnimDeath);
 
-    /// <summary>
-    /// Called by the dash controller to inject horizontal velocity directly.
-    /// </summary>
     public void ApplyDashVelocity(Vector3 dashVelocity)
     {
         _velocity.x = dashVelocity.x;
         _velocity.z = dashVelocity.z;
     }
 
-    /// <summary>
-    /// Called by the dive controller when exiting a dive.
-    /// </summary>
     public void ApplyDiveExitForce(Vector3 direction, float force)
     {
         Vector3 exit = direction.normalized * force;

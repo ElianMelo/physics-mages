@@ -2569,15 +2569,19 @@ MonoBehaviour:
   dashDuration: 0.25
   dashCooldown: 1
   dashSpeedChangeFactor: 100
-  diveSpeed: 10
-  diveSpeedChangeFactor: 100
   jumpForce: 7
-  gravity: 20
+  extraGravity: 20
   groundDrag: 4
   airDrag: 0
   airMultiplier: 1
   maxSlopeAngle: 50
   smoothFollowMoveDirectionFactor: 0.01
+  groundCheckOffset: {x: 0, y: -0.9, z: 0}
+  groundCheckRadius: 0.25
+  groundCheckDistance: 0.15
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   diving: 0
   state: 0
 --- !u!54 &6959760329775457764

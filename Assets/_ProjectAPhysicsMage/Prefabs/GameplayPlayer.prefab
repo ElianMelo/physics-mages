@@ -1301,7 +1301,10 @@ PrefabInstance:
       addedObject: {fileID: 3225008697146876222}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6840311090792073761}
+      addedObject: {fileID: 83450811882719951}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4189022730077744650}
   m_SourcePrefab: {fileID: 100100000, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
 --- !u!4 &984182346015203889 stripped
 Transform:
@@ -1399,15 +1402,19 @@ MonoBehaviour:
   dashDuration: 0.25
   dashCooldown: 1
   dashSpeedChangeFactor: 8
-  diveSpeed: 14
-  diveSpeedChangeFactor: 6
   jumpForce: 10
-  gravity: 20
+  extraGravity: 20
   groundDrag: 10
   airDrag: 1
   airMultiplier: 0.4
   maxSlopeAngle: 45
   smoothFollowMoveDirectionFactor: 0.08
+  groundCheckOffset: {x: 0, y: 0.38, z: 0}
+  groundCheckRadius: 0.27
+  groundCheckDistance: 0.13
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   diving: 0
   state: 0
 --- !u!95 &6603143982152622029
@@ -3426,8 +3433,35 @@ MonoBehaviour:
   playerHealthCanvas: {fileID: 7303437000027249280}
   playerHealthImage: {fileID: 6508350436994615202}
   maxHealth: 100
---- !u!143 &6840311090792073761
-CharacterController:
+--- !u!54 &83450811882719951
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &4189022730077744650
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3441,16 +3475,14 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1.81
-  m_Radius: 0.34
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.2926867
+  m_Height: 1.9552214
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0231718, z: -0.0054557323}
 --- !u!4 &5699148613944662051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -546029997918224874, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}

@@ -3,7 +3,19 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+/// <summary>
+/// Rigidbody-based movement controller.
+///
+/// Setup requirements:
+///   • Attach a Rigidbody to the root object.
+///       – Freeze Rotation X/Y/Z in the Inspector (rotation is handled manually).
+///       – Collision Detection: Continuous Dynamic.
+///   • The root object should carry a small CapsuleCollider (or SphereCollider) that
+///     covers only the hip/torso area — just enough to prevent clipping through the floor.
+///     Limb colliders live on the ragdoll rig child objects; this script doesn't touch them.
+///   • Set the groundLayer mask in the Inspector so the SphereCast only hits geometry.
+/// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovementController : NetworkBehaviour
 {
     // ─── Movement ────────────────────────────────────────────────────────────
@@ -11,19 +23,19 @@ public class PlayerMovementController : NetworkBehaviour
     public float walkSpeed = 6f;
     public float sprintSpeed = 10f;
 
-    [Header("Dash  (Left Shift)")]
+    [Header("Dash")]
     public float dashSpeed = 20f;
     public float dashDuration = 0.25f;
     public float dashCooldown = 1.0f;
     public float dashSpeedChangeFactor = 8f;
 
-    [Header("Dive")]
-    public float diveSpeed = 14f;
-    public float diveSpeedChangeFactor = 6f;
-
     [Header("Jump & Gravity")]
     public float jumpForce = 6f;
-    public float gravity = 20f;
+    /// <summary>
+    /// Extra downward force applied every FixedUpdate while airborne.
+    /// Works on top of Physics.gravity — tune this alongside that global setting.
+    /// </summary>
+    public float extraGravity = 20f;
 
     [Header("Drag")]
     public float groundDrag = 10f;
@@ -39,24 +51,39 @@ public class PlayerMovementController : NetworkBehaviour
     [Header("Rotation")]
     public float smoothFollowMoveDirectionFactor = 0.08f;
 
-    // ─── Internal state ──────────────────────────────────────────────────────
-    private CharacterController _cc;
+    [Header("Ground Detection")]
+    /// <summary>
+    /// Centre of the ground-check sphere in local space.
+    /// Place this at the character's foot level.
+    /// </summary>
+    public Vector3 groundCheckOffset = new Vector3(0f, -0.9f, 0f);
+    public float groundCheckRadius = 0.25f;
+    /// <summary>How far below groundCheckOffset to cast before giving up.</summary>
+    public float groundCheckDistance = 0.15f;
+    public LayerMask groundLayer;
+
+    // ─── References ──────────────────────────────────────────────────────────
+    private Rigidbody _rb;
     private Animator _animator;
     private PlayerRagdollController _ragdoll;
     private PlayerInput _playerInput;
     private Camera _mainCamera;
 
+    // ─── Input ───────────────────────────────────────────────────────────────
     private Vector2 _inputDir;
-    private Vector3 _velocity;
-    private Vector3 _smoothDampVel;
 
+    // ─── State flags ─────────────────────────────────────────────────────────
     private bool _canMove = true;
+    private bool _isGrounded;
     private bool _jumping;
     private bool _dashRequested;
     private float _dashCooldownTimer;
 
     public bool dashing { get; private set; }
     public bool diving;
+
+    // ─── Slope normal ────────────────────────────────────────────────────────
+    private Vector3 _groundNormal = Vector3.up;
 
     // ─── Movement state ──────────────────────────────────────────────────────
     public MovementState state;
@@ -71,10 +98,12 @@ public class PlayerMovementController : NetworkBehaviour
     private float _speedChangeFactor;
     private IEnumerator _lerpCoroutine;
 
+    // ─── Rotation SmoothDamp ─────────────────────────────────────────────────
+    private Vector3 _smoothDampVel;
+
     // ─── Animator hashes ─────────────────────────────────────────────────────
     private static readonly int AnimJump = Animator.StringToHash("Jump");
     private static readonly int AnimDash = Animator.StringToHash("Dash");
-    private static readonly int AnimDive = Animator.StringToHash("Dive");
     private static readonly int AnimRunning = Animator.StringToHash("Running");
     private static readonly int AnimFalling = Animator.StringToHash("Falling");
     private static readonly int AnimVerticalVelocity = Animator.StringToHash("VerticalVelocity");
@@ -83,12 +112,16 @@ public class PlayerMovementController : NetworkBehaviour
     private static readonly int AnimDeath = Animator.StringToHash("Death");
 
     // ─── Public accessors ────────────────────────────────────────────────────
-    public bool IsGrounded => _cc != null && _cc.isGrounded;
+    public bool IsGrounded => _isGrounded;
 
     public bool CanMove
     {
         get => _canMove;
-        set { _canMove = value; if (!value) ResetMovement(); }
+        set
+        {
+            _canMove = value;
+            if (!value) ResetMovement();
+        }
     }
 
     // =========================================================================
@@ -97,9 +130,13 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void Awake()
     {
-        _cc = GetComponent<CharacterController>();
+        _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         _ragdoll = GetComponent<PlayerRagdollController>();
+
+        // Prevent the physics engine from tumbling the character.
+        // Rotation is controlled manually in SmoothRotateToCamera().
+        _rb.freezeRotation = true;
     }
 
     private void Start()
@@ -111,6 +148,7 @@ public class PlayerMovementController : NetworkBehaviour
     public override void OnStartClient()
     {
         if (!IsOwner) return;
+
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.enabled = true;
 
@@ -126,6 +164,7 @@ public class PlayerMovementController : NetworkBehaviour
     {
         if (!IsOwner) return;
 
+        // ── Debug ragdoll triggers (remove in production) ──────────────────
         if (Keyboard.current.iKey.wasPressedThisFrame) _ragdoll.TriggerFall(Vector3.up, 20f);
         if (Keyboard.current.jKey.wasPressedThisFrame) _ragdoll.TriggerFall(Vector3.left, 20f);
         if (Keyboard.current.lKey.wasPressedThisFrame) _ragdoll.TriggerFall(Vector3.right, 20f);
@@ -149,14 +188,18 @@ public class PlayerMovementController : NetworkBehaviour
     {
         if (!IsOwner) return;
         if (_ragdoll.IsStaggered) return;
+
+        CheckGround();
+
         if (dashing || diving) return;
 
+        ApplyExtraGravity();
         Move();
         SmoothRotateToCamera();
     }
 
     // =========================================================================
-    //  Input (via PlayerInput component → Send Messages)
+    //  Input (PlayerInput → Send Messages)
     // =========================================================================
 
     public void OnMove(InputValue value)
@@ -164,17 +207,46 @@ public class PlayerMovementController : NetworkBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (value.isPressed && IsGrounded && !_jumping)
+        if (value.isPressed && _isGrounded && !_jumping)
             Jump();
     }
 
-    /// <summary>
-    /// Bound to the "Dash" Button action (Left Shift / gamepad west button).
-    /// Add a "Dash" action to your Input Action Asset → Player action map.
-    /// </summary>
     public void OnDash(InputValue value)
     {
         if (value.isPressed) _dashRequested = true;
+    }
+
+    // =========================================================================
+    //  Ground detection
+    // =========================================================================
+
+    /// <summary>
+    /// Casts a sphere downward from the foot position.
+    /// Populates _isGrounded and _groundNormal each FixedUpdate.
+    /// Using a SphereCast rather than a point cast gives reliable results on
+    /// slightly uneven surfaces without relying on a CharacterController capsule.
+    /// </summary>
+    private void CheckGround()
+    {
+        Vector3 origin = transform.TransformPoint(groundCheckOffset);
+
+        if (Physics.SphereCast(
+                origin,
+                groundCheckRadius,
+                Vector3.down,
+                out RaycastHit hit,
+                groundCheckDistance,
+                groundLayer,
+                QueryTriggerInteraction.Ignore))
+        {
+            _isGrounded = true;
+            _groundNormal = hit.normal;
+        }
+        else
+        {
+            _isGrounded = false;
+            _groundNormal = Vector3.up;
+        }
     }
 
     // =========================================================================
@@ -183,13 +255,16 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void HandleJumpInput()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && IsGrounded && !_jumping)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && _isGrounded && !_jumping)
             Jump();
     }
 
     private void Jump()
     {
-        _velocity.y = jumpForce;
+        // Zero out vertical velocity first so double-jump height is consistent.
+        _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, 0f, _rb.linearVelocity.z);
+        _rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+
         _jumping = true;
         _animator.SetTrigger(AnimJump);
         StartCoroutine(ResetJumpFlag());
@@ -205,19 +280,13 @@ public class PlayerMovementController : NetworkBehaviour
     //  Dash
     // =========================================================================
 
-    /// <summary>
-    /// Dashes in the current input direction (or character forward when idle).
-    /// Speed follows a Sin curve — ramps up then eases out for a punchy feel.
-    /// After the dash, walkSpeed momentum bleeds naturally into locomotion via
-    /// the existing keepMomentum / SmoothlyLerpMoveSpeed path.
-    /// </summary>
     private IEnumerator DashCoroutine()
     {
         dashing = true;
         _dashCooldownTimer = dashCooldown;
         _animator.SetTrigger(AnimDash);
 
-        // Dash direction is camera-relative, same as normal movement
+        // Camera-relative dash direction, same convention as normal movement.
         Vector3 camForward = _mainCamera.transform.forward;
         camForward.y = 0f;
         camForward.Normalize();
@@ -227,27 +296,41 @@ public class PlayerMovementController : NetworkBehaviour
             ? (camForward * _inputDir.y + camRight * _inputDir.x).normalized
             : transform.forward;
 
-        // Snap body to face the dash direction instantly
         transform.forward = dashDir;
+
+        // Switch to kinematic during the dash so we drive position exactly
+        // without fighting the solver on the ground collider.
+        _rb.isKinematic = true;
 
         float elapsed = 0f;
         while (elapsed < dashDuration)
         {
-            // Sin curve: 0 → peak → 0 — punchy burst with natural ease-out
             float t = elapsed / dashDuration;
             float speed = Mathf.Lerp(walkSpeed, dashSpeed, Mathf.Sin(t * Mathf.PI));
 
-            Vector3 move = dashDir * (speed * Time.deltaTime);
-            move.y = (IsGrounded ? -2f : _velocity.y) * Time.deltaTime;
-            _cc.Move(move);
+            // Preserve a little gravity feel by keeping Y velocity factored in.
+            float yOffset = _isGrounded
+                ? -0.05f                                // keep flush to ground
+                : _rb.linearVelocity.y * Time.deltaTime;      // fall naturally
+
+            Vector3 delta = dashDir * (speed * Time.deltaTime);
+            delta.y = yOffset;
+            _rb.MovePosition(_rb.position + delta);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        // Feed residual momentum into the locomotion system
-        _velocity.x = dashDir.x * walkSpeed;
-        _velocity.z = dashDir.z * walkSpeed;
+        _rb.isKinematic = false;
+
+        // Seed residual momentum into the Rigidbody so locomotion momentum
+        // blending in StateHandler / SmoothlyLerpMoveSpeed has something to
+        // ease out from.
+        _rb.linearVelocity = new Vector3(
+            dashDir.x * walkSpeed,
+            _rb.linearVelocity.y,
+            dashDir.z * walkSpeed);
+
         dashing = false;
     }
 
@@ -263,7 +346,7 @@ public class PlayerMovementController : NetworkBehaviour
             _desiredMoveSpeed = dashSpeed;
             _speedChangeFactor = dashSpeedChangeFactor;
         }
-        else if (IsGrounded)
+        else if (_isGrounded)
         {
             state = MovementState.running;
             _desiredMoveSpeed = walkSpeed;
@@ -316,11 +399,14 @@ public class PlayerMovementController : NetworkBehaviour
     }
 
     // =========================================================================
-    //  Move
+    //  Move (called from FixedUpdate)
     // =========================================================================
 
     private void Move()
     {
+        if (!_canMove) return;
+
+        // Build camera-relative wish direction.
         Vector3 camForward = _mainCamera.transform.forward;
         camForward.y = 0f;
         camForward.Normalize();
@@ -328,52 +414,56 @@ public class PlayerMovementController : NetworkBehaviour
 
         Vector3 wishDir = camForward * _inputDir.y + camRight * _inputDir.x;
 
-        if (IsGrounded && OnSlope(out Vector3 slopeNormal))
-            wishDir = Vector3.ProjectOnPlane(wishDir, slopeNormal).normalized;
+        // Project onto slope so the character doesn't fight the normal.
+        if (_isGrounded && OnSlope())
+            wishDir = Vector3.ProjectOnPlane(wishDir, _groundNormal).normalized;
 
-        float drag = IsGrounded ? groundDrag : airDrag;
-        float speedFactor = IsGrounded ? 1f : airMultiplier;
+        float drag = _isGrounded ? groundDrag : airDrag;
+        float speedFactor = _isGrounded ? 1f : airMultiplier;
 
-        Vector3 horizontal = new Vector3(_velocity.x, 0f, _velocity.z);
-        horizontal += wishDir * (_moveSpeed * speedFactor * Time.fixedDeltaTime * 10f);
+        // ── Horizontal velocity ──────────────────────────────────────────────
+        // Work in the XZ plane, then re-apply Y so we don't clobber gravity.
+        Vector3 currentVel = _rb.linearVelocity;
+        Vector3 horizontalVel = new Vector3(currentVel.x, 0f, currentVel.z);
 
-        if (horizontal.magnitude > _moveSpeed)
-            horizontal = horizontal.normalized * _moveSpeed;
+        // Accelerate toward wish direction.
+        horizontalVel += wishDir * (_moveSpeed * speedFactor * Time.fixedDeltaTime * 10f);
 
-        horizontal = Vector3.MoveTowards(horizontal, Vector3.zero, drag * Time.fixedDeltaTime);
-        _velocity.x = horizontal.x;
-        _velocity.z = horizontal.z;
+        // Clamp to move speed.
+        if (horizontalVel.magnitude > _moveSpeed)
+            horizontalVel = horizontalVel.normalized * _moveSpeed;
 
-        if (IsGrounded && _velocity.y < 0f)
-            _velocity.y = -2f;
+        // Apply drag (deceleration toward zero when no input).
+        horizontalVel = Vector3.MoveTowards(horizontalVel, Vector3.zero, drag * Time.fixedDeltaTime);
 
-        _velocity.y -= gravity * Time.fixedDeltaTime;
+        // Re-combine with the vertical component the physics engine owns.
+        _rb.linearVelocity = new Vector3(horizontalVel.x, currentVel.y, horizontalVel.z);
+    }
 
-        _cc.Move(_velocity * Time.fixedDeltaTime);
+    // =========================================================================
+    //  Extra gravity
+    // =========================================================================
+
+    /// <summary>
+    /// Supplements Physics.gravity with a tunable per-character downward force.
+    /// Keeps falling snappy without touching the global gravity setting.
+    /// Not applied while grounded to avoid pushing through floors.
+    /// </summary>
+    private void ApplyExtraGravity()
+    {
+        if (!_isGrounded)
+            _rb.AddForce(Vector3.down * extraGravity, ForceMode.Acceleration);
     }
 
     // =========================================================================
     //  Slope detection
     // =========================================================================
 
-    private bool OnSlope(out Vector3 normal)
+    private bool OnSlope()
     {
-        normal = Vector3.up;
         if (_jumping) return false;
-
-        float checkDist = (_cc.height * 0.5f) + _cc.stepOffset + 0.05f;
-        if (Physics.SphereCast(transform.position + _cc.center,
-                               _cc.radius * 0.9f,
-                               Vector3.down, out RaycastHit hit, checkDist))
-        {
-            float angle = Vector3.Angle(Vector3.up, hit.normal);
-            if (angle > 0f && angle < maxSlopeAngle)
-            {
-                normal = hit.normal;
-                return true;
-            }
-        }
-        return false;
+        float angle = Vector3.Angle(Vector3.up, _groundNormal);
+        return angle > 0f && angle < maxSlopeAngle;
     }
 
     // =========================================================================
@@ -387,10 +477,14 @@ public class PlayerMovementController : NetworkBehaviour
         Vector3 camForward = _mainCamera.transform.forward;
         camForward.y = 0f;
 
-        transform.forward = Vector3.SmoothDamp(
-            transform.forward, camForward,
+        Vector3 newForward = Vector3.SmoothDamp(
+            transform.forward,
+            camForward,
             ref _smoothDampVel,
             smoothFollowMoveDirectionFactor);
+
+        // Rotate the Rigidbody directly to keep physics and transform in sync.
+        _rb.MoveRotation(Quaternion.LookRotation(newForward));
     }
 
     // =========================================================================
@@ -405,7 +499,7 @@ public class PlayerMovementController : NetworkBehaviour
         _animator.SetBool(AnimDashing, dashing);
         _animator.SetBool(AnimFalling, state == MovementState.airing);
         _animator.SetFloat(AnimVerticalVelocity,
-            Mathf.Lerp(0f, 1f, Mathf.Abs(_velocity.y) / 20f));
+            Mathf.Lerp(0f, 1f, Mathf.Abs(_rb.linearVelocity.y) / 20f));
     }
 
     // =========================================================================
@@ -415,7 +509,7 @@ public class PlayerMovementController : NetworkBehaviour
     private void ResetMovement()
     {
         _inputDir = Vector2.zero;
-        _velocity = new Vector3(0f, _velocity.y, 0f);
+        _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
     }
 
     // =========================================================================
@@ -423,21 +517,37 @@ public class PlayerMovementController : NetworkBehaviour
     // =========================================================================
 
     public void CallDashAnimation() => _animator.SetTrigger(AnimDash);
-    public void CallDiveAnimation() => _animator.SetTrigger(AnimDive);
     public void TakeDamage() => _animator.SetTrigger(AnimTakeDamage);
     public void Death() => _animator.SetTrigger(AnimDeath);
 
+    /// <summary>
+    /// Called by the ragdoll/attack system to seed a directional impulse into
+    /// the Rigidbody (e.g. being launched by a dash strike).
+    /// </summary>
     public void ApplyDashVelocity(Vector3 dashVelocity)
     {
-        _velocity.x = dashVelocity.x;
-        _velocity.z = dashVelocity.z;
+        _rb.linearVelocity = new Vector3(dashVelocity.x, _rb.linearVelocity.y, dashVelocity.z);
     }
 
-    public void ApplyDiveExitForce(Vector3 direction, float force)
+    /// <summary>
+    /// Switches the Rigidbody between kinematic and dynamic.
+    /// Call this from PlayerRagdollController when toggling the ragdoll state:
+    ///   - ragdoll ON  → SetKinematic(false) so physics drives the body
+    ///   - ragdoll OFF → SetKinematic(true)  so this script drives it again
+    /// </summary>
+    public void SetKinematic(bool isKinematic)
     {
-        Vector3 exit = direction.normalized * force;
-        _velocity.x = exit.x;
-        _velocity.y = Mathf.Max(_velocity.y, exit.y);
-        _velocity.z = exit.z;
+        _rb.isKinematic = isKinematic;
     }
+
+#if UNITY_EDITOR
+    // ─── Gizmos ──────────────────────────────────────────────────────────────
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Vector3 origin = transform.TransformPoint(groundCheckOffset);
+        Gizmos.DrawWireSphere(origin, groundCheckRadius);
+        Gizmos.DrawWireSphere(origin + Vector3.down * groundCheckDistance, groundCheckRadius);
+    }
+#endif
 }

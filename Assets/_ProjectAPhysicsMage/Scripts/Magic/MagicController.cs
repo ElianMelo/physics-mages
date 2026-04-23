@@ -1,13 +1,18 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MagicController : NetworkBehaviour
 {
     public readonly SyncVar<MagicElement> element = new SyncVar<MagicElement>();
     public readonly SyncVar<MagicDirection> direction = new SyncVar<MagicDirection>();
     public readonly SyncVar<int> ownerID = new SyncVar<int>();
-    private void Awake() { }
+    private Collider _collider;
+    private void Awake() {
+        _collider = GetComponent<Collider>();
+    }
 
     private void Update() { }
 
@@ -51,10 +56,53 @@ public class MagicController : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerRagdollController playerRagdollController = other.GetComponent<PlayerRagdollController>();
-        if (playerRagdollController == null) return;
-        if (playerRagdollController.OwnerId == ownerID.Value) return;
-        playerRagdollController.TriggerFall(GetDirectionBasedOnMagic(element.Value, direction.Value, other.transform.position).normalized, 20f);
-        Physics.IgnoreCollision(GetComponent<Collider>(), other, true);
+        // Only server handles collision.
+        if (!IsServerInitialized)
+            return;
+
+        PlayerRagdollController target =
+            other.GetComponent<PlayerRagdollController>();
+
+        if (target == null)
+            return;
+
+        // Prevent self-hit if needed.
+        // if (target.OwnerId == ownerID.Value)
+        //     return;
+
+        Vector3 hitDirection =
+            GetDirectionBasedOnMagic(
+                element.Value,
+                direction.Value,
+                other.transform.position
+            ).normalized;
+
+        float force = 20f;
+
+        // Apply immediately on server (authoritative)
+        // target.TriggerFall(hitDirection, force);
+
+        // Replicate to all clients
+        TriggerFallObserversRpc(target.ObjectId, hitDirection, force);
+
+        Physics.IgnoreCollision(_collider, other, true);
+    }
+
+    [ObserversRpc]
+    private void TriggerFallObserversRpc(int targetObjectId, Vector3 dir, float force)
+    {
+        // Skip server, already applied above
+        //if (IsServerInitialized)
+        //    return;
+
+        if (NetworkManager.ClientManager.Objects.Spawned
+            .TryGetValue(targetObjectId, out NetworkObject nob))
+        {
+            PlayerRagdollController target =
+                nob.GetComponent<PlayerRagdollController>();
+
+            if (target != null)
+                target.TriggerFall(dir, force);
+        }
     }
 }

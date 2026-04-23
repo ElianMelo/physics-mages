@@ -67,8 +67,8 @@ public class MagicController : NetworkBehaviour
             return;
 
         // Prevent self-hit if needed.
-        // if (target.OwnerId == ownerID.Value)
-        //     return;
+        if (target.OwnerId == ownerID.Value)
+            return;
 
         Vector3 hitDirection =
             GetDirectionBasedOnMagic(

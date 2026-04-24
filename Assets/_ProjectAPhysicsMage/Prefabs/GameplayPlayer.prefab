@@ -2075,10 +2075,10 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 1673914528845359768}
   walkSpeed: 6
   sprintSpeed: 10
-  dashSpeed: 20
-  dashDuration: 0.1
+  dashSpeed: 40
+  dashDuration: 1
   dashCooldown: 2
-  dashSpeedChangeFactor: 10
+  dashSpeedChangeFactor: 1000
   jumpForce: 10
   extraGravity: 20
   groundDrag: 10

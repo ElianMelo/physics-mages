@@ -405,6 +405,7 @@ public class PlayerMovementController : NetworkBehaviour
     private void Move()
     {
         if (!_canMove) return;
+        if (dashing) return;
 
         // Build camera-relative wish direction.
         Vector3 camForward = _mainCamera.transform.forward;

@@ -286,7 +286,7 @@ public class PlayerMovementController : NetworkBehaviour
         _dashCooldownTimer = dashCooldown;
         _animator.SetTrigger(AnimDash);
 
-        // Camera-relative dash direction, same convention as normal movement.
+        // ── Dash direction ────────────────────────────────────────────────────
         Vector3 camForward = _mainCamera.transform.forward;
         camForward.y = 0f;
         camForward.Normalize();
@@ -298,34 +298,88 @@ public class PlayerMovementController : NetworkBehaviour
 
         transform.forward = dashDir;
 
-        // Switch to kinematic during the dash so we drive position exactly
-        // without fighting the solver on the ground collider.
-        _rb.isKinematic = true;
+        // ── Capsule cast parameters ───────────────────────────────────────────
+        // Reuse the same capsule shape as the character's collider so the sweep
+        // matches the actual body. Retrieve these from the CapsuleCollider if you
+        // have one; otherwise fall back to the groundCheck sphere radius.
+        CapsuleCollider capsule = GetComponent<CapsuleCollider>();
 
+        float castRadius = capsule != null ? capsule.radius - 0.02f : groundCheckRadius;
+        float castHeight = capsule != null ? capsule.height : 1.8f;
+        Vector3 capsuleUp = capsule != null ? capsule.transform.up : Vector3.up;
+        Vector3 capsuleCenter = capsule != null
+            ? transform.TransformPoint(capsule.center)
+            : transform.position + Vector3.up * 0.9f;
+
+        float halfHeight = Mathf.Max(0f, castHeight * 0.5f - castRadius);
+        Vector3 point1 = capsuleCenter + capsuleUp * halfHeight;   // top sphere centre
+        Vector3 point2 = capsuleCenter - capsuleUp * halfHeight;   // bottom sphere centre
+
+        // ── Keep Rigidbody DYNAMIC — collision detection stays active ─────────
+        // Disable normal Move() so it doesn't fight the dash velocity.
+        // We just override linearVelocity each frame directly.
         float elapsed = 0f;
+        const float skinWidth = 0.05f;  // stop slightly before the hit surface
+
         while (elapsed < dashDuration)
         {
             float t = elapsed / dashDuration;
             float speed = Mathf.Lerp(walkSpeed, dashSpeed, Mathf.Sin(t * Mathf.PI));
+            float step = speed * Time.deltaTime;
 
-            // Preserve a little gravity feel by keeping Y velocity factored in.
-            float yOffset = _isGrounded
-                ? -0.05f                                // keep flush to ground
-                : _rb.linearVelocity.y * Time.deltaTime;      // fall naturally
+            // ── Wall / obstacle sweep ─────────────────────────────────────────
+            // Recalculate capsule world positions each frame (body may have moved).
+            capsuleCenter = capsule != null
+                ? transform.TransformPoint(capsule.center)
+                : transform.position + Vector3.up * 0.9f;
+            point1 = capsuleCenter + capsuleUp * halfHeight;
+            point2 = capsuleCenter - capsuleUp * halfHeight;
 
-            Vector3 delta = dashDir * (speed * Time.deltaTime);
-            delta.y = yOffset;
-            _rb.MovePosition(_rb.position + delta);
+            if (Physics.CapsuleCast(
+                    point1, point2,
+                    castRadius,
+                    dashDir,
+                    out RaycastHit wallHit,
+                    step + skinWidth,
+                    groundLayer,               // include wall/obstacle layers here
+                    QueryTriggerInteraction.Ignore))
+            {
+                // Project dash direction onto the wall plane to attempt a slide,
+                // or stop outright if we're near-head-on (dot close to –1).
+                Vector3 projected = Vector3.ProjectOnPlane(dashDir, wallHit.normal).normalized;
+                float dot = Vector3.Dot(dashDir, -wallHit.normal);   // 1 = head-on
+
+                if (dot > 0.85f || projected.sqrMagnitude < 0.01f)
+                {
+                    // Head-on hit — stop the dash entirely.
+                    break;
+                }
+                else
+                {
+                    // Slide along the surface.
+                    dashDir = projected;
+                    transform.forward = new Vector3(dashDir.x, 0f, dashDir.z).normalized;
+                }
+            }
+
+            // ── Ground-hugging vertical component ────────────────────────────
+            // While grounded, keep Y velocity small so we don't launch off ramps.
+            // While airborne, let gravity run naturally by preserving the current Y.
+            float yVel = _isGrounded
+                ? Mathf.Min(_rb.linearVelocity.y, 0f)   // allow falling, no upward push
+                : _rb.linearVelocity.y;
+
+            _rb.linearVelocity = new Vector3(
+                dashDir.x * speed,
+                yVel,
+                dashDir.z * speed);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        _rb.isKinematic = false;
-
-        // Seed residual momentum into the Rigidbody so locomotion momentum
-        // blending in StateHandler / SmoothlyLerpMoveSpeed has something to
-        // ease out from.
+        // ── Blend into post-dash locomotion ───────────────────────────────────
+        // Seed residual momentum so SmoothlyLerpMoveSpeed has something to ease out of.
         _rb.linearVelocity = new Vector3(
             dashDir.x * walkSpeed,
             _rb.linearVelocity.y,

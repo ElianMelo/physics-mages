@@ -416,7 +416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1461618635745353753
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2076,9 +2076,9 @@ MonoBehaviour:
   walkSpeed: 6
   sprintSpeed: 10
   dashSpeed: 20
-  dashDuration: 0.25
-  dashCooldown: 1
-  dashSpeedChangeFactor: 8
+  dashDuration: 0.1
+  dashCooldown: 2
+  dashSpeedChangeFactor: 10
   jumpForce: 10
   extraGravity: 20
   groundDrag: 10

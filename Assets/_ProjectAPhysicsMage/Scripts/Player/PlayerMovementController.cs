@@ -472,7 +472,7 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void SmoothRotateToCamera()
     {
-        if (_inputDir.sqrMagnitude < 0.01f) return;
+        // if (_inputDir.sqrMagnitude < 0.01f) return;
 
         Vector3 camForward = _mainCamera.transform.forward;
         camForward.y = 0f;
@@ -495,6 +495,8 @@ public class PlayerMovementController : NetworkBehaviour
     {
         bool isRunning = state == MovementState.running && _inputDir.sqrMagnitude > 0.01f;
 
+        _animator.SetFloat("x", _inputDir.x);
+        _animator.SetFloat("y", _inputDir.y);
         _animator.SetBool(AnimRunning, isRunning);
         _animator.SetBool(AnimDashing, dashing);
         _animator.SetBool(AnimFalling, state == MovementState.airing);

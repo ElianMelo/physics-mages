@@ -80,6 +80,16 @@ public class MagicController : NetworkBehaviour
         if (target.OwnerId == ownerID.Value)
             return;
 
+        PlayerController targetController =
+            other.GetComponent<PlayerController>();
+
+        if (targetController.HasActiveShield())
+        {
+            Physics.IgnoreCollision(_collider, other, true);
+            HandleShieldBehaviour(targetController);
+            return;
+        }
+
         Vector3 hitDirection =
             GetDirectionBasedOnMagic(
                 element.Value,
@@ -96,6 +106,13 @@ public class MagicController : NetworkBehaviour
         TriggerFallObserversRpc(target.ObjectId, hitDirection, force);
 
         Physics.IgnoreCollision(_collider, other, true);
+    }
+
+    private void HandleShieldBehaviour(PlayerController targetController)
+    {
+        MagicElement element = targetController.GetShieldElement();
+        if (this.element.Value != element) return;
+        targetController.playerVFXController.CastMagicVFX(this.element.Value, this.direction.Value);
     }
 
     [ObserversRpc]

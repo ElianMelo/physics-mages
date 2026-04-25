@@ -4,12 +4,18 @@ using PixPlays.ElementalVFX;
 using System.Collections;
 using UnityEngine;
 
-public class VFXPlayerController : NetworkBehaviour
+public class PlayerVFXController : NetworkBehaviour
 {
     private MagicVFX _currentMagicVFX;
     private MagicPrefabData _currentMagicPrefabData;
     [SerializedDictionary("MagicVFX", "PrefabData")]
     public SerializedDictionary<MagicVFX, MagicPrefabData> _magicVFXToPrefabData;
+    private PlayerController _playerController;
+
+    private void Awake()
+    {
+        _playerController = GetComponent<PlayerController>();
+    }
 
     public void CastMagicVFX(MagicElement element, MagicDirection direction)
     {
@@ -33,7 +39,7 @@ public class VFXPlayerController : NetworkBehaviour
         _currentMagicPrefabData = _magicVFXToPrefabData[currentMagicVFX];
         networkObject = Instantiate(_currentMagicPrefabData.prefab, position, rotation);
         MagicController magicController = networkObject.GetComponent<MagicController>();
-        HandleShield(magicController, currentMagicVFX);
+        HandleShield(magicController, currentMagicVFX, _currentMagicPrefabData.duration);
         magicController.SetupMagicData(currentMagicVFX.element, currentMagicVFX.direction, OwnerId);
         HandleFollowPlayer(magicController, currentMagicVFX);
         Spawn(networkObject);
@@ -53,9 +59,10 @@ public class VFXPlayerController : NetworkBehaviour
         magicController.SetupTarget(transform, new Vector3(0f, currentMagicVFX.element == MagicElement.Earth ? 0.7f : 1f, 0f));
     }
 
-    private void HandleShield(MagicController magicController, MagicVFX currentMagicVFX)
+    private void HandleShield(MagicController magicController, MagicVFX currentMagicVFX, float duration)
     {
         if (currentMagicVFX.direction != MagicDirection.Shield) return;
+        _playerController.SetupShield(duration, currentMagicVFX.element);
         Shield shield = magicController.GetComponent<Shield>();
         if (shield == null) return;
         shield.CallPlayImplementation();

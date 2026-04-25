@@ -34,7 +34,7 @@ public class PlayerMagicController : NetworkBehaviour
 
     public static Action<MagicChoosePhase> OnMagicPhaseChange;
 
-    private VFXPlayerController playerVFXController;
+    private PlayerVFXController playerVFXController;
     private Animator animator;
 
     private static readonly int AnimArea = Animator.StringToHash("Area");
@@ -43,7 +43,7 @@ public class PlayerMagicController : NetworkBehaviour
 
     private void Awake()
     {
-        playerVFXController = GetComponent<VFXPlayerController>();
+        playerVFXController = GetComponent<PlayerVFXController>();
         animator = GetComponentInChildren<Animator>();    
     }
 

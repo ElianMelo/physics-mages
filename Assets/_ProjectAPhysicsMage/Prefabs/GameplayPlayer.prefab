@@ -3792,7 +3792,7 @@ MonoBehaviour:
       Value:
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
-        duration: 2
+        duration: 10
         prefab: {fileID: 1690259015841541202, guid: bc7a714c244d08e44af2ab5484c4bdb9, type: 3}
     - Key:
         element: 1
@@ -3816,7 +3816,7 @@ MonoBehaviour:
       Value:
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
-        duration: 2
+        duration: 10
         prefab: {fileID: 1178953370205012044, guid: d85bf8e3b4a60b5498257bd67dafa85d, type: 3}
     - Key:
         element: 2
@@ -3840,7 +3840,7 @@ MonoBehaviour:
       Value:
         initialPosition: {fileID: 2880242346645065208}
         followPlayer: 1
-        duration: 2
+        duration: 10
         prefab: {fileID: 4559115991859758748, guid: 1ac7cf413880d6e48aab8a4797b8b494, type: 3}
 --- !u!114 &1673914528845359768
 MonoBehaviour:

@@ -1,5 +1,6 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using PixPlays.ElementalVFX;
 using UnityEngine;
 
 public class MagicController : NetworkBehaviour
@@ -12,6 +13,7 @@ public class MagicController : NetworkBehaviour
     private float smoothTime = 0.05f;
     private Vector3 velocity = Vector3.zero;
     private Collider _collider;
+    private Vector3 forcedDirection = Vector3.zero;
     private void Awake() {
         _collider = GetComponent<Collider>();
     }
@@ -20,6 +22,14 @@ public class MagicController : NetworkBehaviour
         if (target == null) return;
         transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref velocity, smoothTime);
     }
+
+    public override void OnStartClient()
+    {
+        Shield shield = GetComponent<Shield>();
+        if (shield == null) return;
+        shield.CallPlayImplementation();
+    }
+
     public void SetupTarget(Transform target, Vector3 offset)
     {
         this.target = target;
@@ -31,6 +41,11 @@ public class MagicController : NetworkBehaviour
         this.element.Value = element;
         this.direction.Value = direction;
         this.ownerID.Value = ownerID;
+    }
+
+    public void SetupForcedDirection(Vector3 direction)
+    {
+        forcedDirection = direction;
     }
 
     private Vector3 GetDirectionBasedOnMagic(MagicElement element, MagicDirection direction, Vector3 otherPosition)
@@ -97,10 +112,10 @@ public class MagicController : NetworkBehaviour
                 other.transform.position
             ).normalized;
 
-        float force = 20f;
+        if(forcedDirection != Vector3.zero)
+            hitDirection = forcedDirection.normalized;
 
-        // Apply immediately on server (authoritative)
-        // target.TriggerFall(hitDirection, force);
+        float force = 20f;
 
         // Replicate to all clients
         TriggerFallObserversRpc(target.ObjectId, hitDirection, force);
@@ -110,18 +125,27 @@ public class MagicController : NetworkBehaviour
 
     private void HandleShieldBehaviour(PlayerController targetController)
     {
-        MagicElement element = targetController.GetShieldElement();
-        if (this.element.Value != element) return;
-        targetController.playerVFXController.CastMagicVFX(this.element.Value, this.direction.Value);
+        HandleShieldBehaviourClient(targetController.ObjectId);
+    }
+
+    [ObserversRpc]
+    private void HandleShieldBehaviourClient(int targetObjectId)
+    {
+        if (NetworkManager.ClientManager.Objects.Spawned
+            .TryGetValue(targetObjectId, out NetworkObject nob))
+        {
+            PlayerController target =
+                nob.GetComponent<PlayerController>();
+
+            MagicElement element = target.GetShieldElement();
+            if (this.element.Value != element) return;
+            target.playerVFXController.CastMagicVFX(this.element.Value, this.direction.Value, transform.position - target.transform.position);
+        }
     }
 
     [ObserversRpc]
     private void TriggerFallObserversRpc(int targetObjectId, Vector3 dir, float force)
     {
-        // Skip server, already applied above
-        //if (IsServerInitialized)
-        //    return;
-
         if (NetworkManager.ClientManager.Objects.Spawned
             .TryGetValue(targetObjectId, out NetworkObject nob))
         {

@@ -1982,6 +1982,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4189022730077744650}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5145424122112709079}
   m_SourcePrefab: {fileID: 100100000, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
 --- !u!4 &984182346015203889 stripped
 Transform:
@@ -4046,6 +4049,28 @@ CapsuleCollider:
   m_Height: 1.4885665
   m_Direction: 1
   m_Center: {x: 0, y: 0.78984433, z: 0.04273033}
+--- !u!114 &5145424122112709079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Animating.NetworkAnimator
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1673914528845359768}
+  _networkObjectCache: {fileID: 0}
+  IgnoredParameters: []
+  _animator: {fileID: 6603143982152622029}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!4 &5699148613944662051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -546029997918224874, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}

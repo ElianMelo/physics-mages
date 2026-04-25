@@ -1,3 +1,4 @@
+using FishNet.Component.Animating;
 using FishNet.Object;
 using System;
 using System.Collections;
@@ -35,7 +36,7 @@ public class PlayerMagicController : NetworkBehaviour
     public static Action<MagicChoosePhase> OnMagicPhaseChange;
 
     private PlayerVFXController playerVFXController;
-    private Animator animator;
+    private NetworkAnimator animator;
 
     private static readonly int AnimArea = Animator.StringToHash("Area");
     private static readonly int AnimForward = Animator.StringToHash("Forward");
@@ -44,7 +45,7 @@ public class PlayerMagicController : NetworkBehaviour
     private void Awake()
     {
         playerVFXController = GetComponent<PlayerVFXController>();
-        animator = GetComponentInChildren<Animator>();    
+        animator = GetComponent<NetworkAnimator>();    
     }
 
     void Update()
@@ -129,7 +130,8 @@ public class PlayerMagicController : NetworkBehaviour
 
     public void AnimationCastMagic()
     {
-        playerVFXController.CastMagicVFX(_element, _direction);
+        if (!IsOwner) return;
+        playerVFXController.CastMagicVFX(_element, _direction, Vector3.zero);
         ChangePhase(MagicChoosePhase.Element);
         _isPerformingMagicAnimation = false;
     }

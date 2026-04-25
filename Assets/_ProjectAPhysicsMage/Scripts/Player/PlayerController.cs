@@ -46,7 +46,6 @@ public class PlayerController : NetworkBehaviour
 
     public void SetupShield(float duration, MagicElement element)
     {
-        if (!IsOwner) return;
         SetupShieldServer(duration, element);
     }
 

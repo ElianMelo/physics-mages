@@ -17,13 +17,14 @@ public class PlayerVFXController : NetworkBehaviour
         _playerController = GetComponent<PlayerController>();
     }
 
-    public void CastMagicVFX(MagicElement element, MagicDirection direction)
+    public void CastMagicVFX(MagicElement element, MagicDirection direction, Vector3 forcedDirection)
     {
         _currentMagicVFX = new MagicVFX(element, direction);
         GetDataByCurrentMagic();
         SpawnVFX(_currentMagicVFX, 
             _currentMagicPrefabData.initialPosition.position, 
-            _currentMagicPrefabData.initialPosition.rotation);
+            _currentMagicPrefabData.initialPosition.rotation,
+            forcedDirection);
     }
 
     private void GetDataByCurrentMagic()
@@ -33,21 +34,26 @@ public class PlayerVFXController : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void SpawnVFX(MagicVFX currentMagicVFX, Vector3 position, Quaternion rotation)
+    private void SpawnVFX(MagicVFX currentMagicVFX, Vector3 position, Quaternion rotation, Vector3 forcedDiretion)
     {
         NetworkObject networkObject;
         _currentMagicPrefabData = _magicVFXToPrefabData[currentMagicVFX];
-        networkObject = Instantiate(_currentMagicPrefabData.prefab, position, rotation);
+        Vector3 targetPosition = position;
+        Quaternion targetRotation = rotation;
+        if (_currentMagicPrefabData.initialPosition != null)
+        {
+            targetPosition = _currentMagicPrefabData.initialPosition.position;
+            targetRotation = _currentMagicPrefabData.initialPosition.rotation;
+            if (forcedDiretion != Vector3.zero)
+                targetRotation = Quaternion.LookRotation(forcedDiretion);
+        }
+        networkObject = Instantiate(_currentMagicPrefabData.prefab, targetPosition, targetRotation);
         MagicController magicController = networkObject.GetComponent<MagicController>();
         HandleShield(magicController, currentMagicVFX, _currentMagicPrefabData.duration);
         magicController.SetupMagicData(currentMagicVFX.element, currentMagicVFX.direction, OwnerId);
+        magicController.SetupForcedDirection(forcedDiretion);
         HandleFollowPlayer(magicController, currentMagicVFX);
         Spawn(networkObject);
-        if (_currentMagicPrefabData.initialPosition != null)
-        {
-            networkObject.transform.position = _currentMagicPrefabData.initialPosition.position;
-            networkObject.transform.rotation = _currentMagicPrefabData.initialPosition.rotation;
-        }
         ParticleSystem particle = networkObject.GetComponent<ParticleSystem>();
         if(particle != null) particle.Play();
         StartCoroutine(DespawnAfterSeconds(networkObject.gameObject, _currentMagicPrefabData.duration));
@@ -63,9 +69,6 @@ public class PlayerVFXController : NetworkBehaviour
     {
         if (currentMagicVFX.direction != MagicDirection.Shield) return;
         _playerController.SetupShield(duration, currentMagicVFX.element);
-        Shield shield = magicController.GetComponent<Shield>();
-        if (shield == null) return;
-        shield.CallPlayImplementation();
     }
 
     private IEnumerator DespawnAfterSeconds(GameObject entitySpawned, float secondsBeforeDespawn)

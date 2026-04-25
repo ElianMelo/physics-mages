@@ -1,5 +1,7 @@
-﻿using FishNet.Object;
+﻿using FishNet.Component.Animating;
+using FishNet.Object;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -65,6 +67,7 @@ public class PlayerMovementController : NetworkBehaviour
     // ─── References ──────────────────────────────────────────────────────────
     private Rigidbody _rb;
     private Animator _animator;
+    private NetworkAnimator _animatorNetwork;
     private PlayerRagdollController _ragdoll;
     private PlayerInput _playerInput;
     private Camera _mainCamera;
@@ -132,6 +135,7 @@ public class PlayerMovementController : NetworkBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
+        _animatorNetwork = GetComponent<NetworkAnimator>();
         _ragdoll = GetComponent<PlayerRagdollController>();
 
         // Prevent the physics engine from tumbling the character.
@@ -259,7 +263,7 @@ public class PlayerMovementController : NetworkBehaviour
         _rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
 
         _jumping = true;
-        _animator.SetTrigger(AnimJump);
+        _animatorNetwork.SetTrigger(AnimJump);
         StartCoroutine(ResetJumpFlag());
     }
 
@@ -277,7 +281,7 @@ public class PlayerMovementController : NetworkBehaviour
     {
         dashing = true;
         _dashCooldownTimer = dashCooldown;
-        _animator.SetTrigger(AnimDash);
+        _animatorNetwork.SetTrigger(AnimDash);
 
         // ── Dash direction ────────────────────────────────────────────────────
         Vector3 camForward = _mainCamera.transform.forward;
@@ -569,26 +573,6 @@ public class PlayerMovementController : NetworkBehaviour
     public void CallDashAnimation() => _animator.SetTrigger(AnimDash);
     public void TakeDamage() => _animator.SetTrigger(AnimTakeDamage);
     public void Death() => _animator.SetTrigger(AnimDeath);
-
-    /// <summary>
-    /// Called by the ragdoll/attack system to seed a directional impulse into
-    /// the Rigidbody (e.g. being launched by a dash strike).
-    /// </summary>
-    public void ApplyDashVelocity(Vector3 dashVelocity)
-    {
-        _rb.linearVelocity = new Vector3(dashVelocity.x, _rb.linearVelocity.y, dashVelocity.z);
-    }
-
-    /// <summary>
-    /// Switches the Rigidbody between kinematic and dynamic.
-    /// Call this from PlayerRagdollController when toggling the ragdoll state:
-    ///   - ragdoll ON  → SetKinematic(false) so physics drives the body
-    ///   - ragdoll OFF → SetKinematic(true)  so this script drives it again
-    /// </summary>
-    public void SetKinematic(bool isKinematic)
-    {
-        _rb.isKinematic = isKinematic;
-    }
 
 #if UNITY_EDITOR
     // ─── Gizmos ──────────────────────────────────────────────────────────────

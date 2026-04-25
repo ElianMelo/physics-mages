@@ -1,5 +1,6 @@
 using FishNet.Object;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public enum MagicElement
@@ -29,10 +30,22 @@ public class PlayerMagicController : NetworkBehaviour
     private MagicChoosePhase _currentPhase = MagicChoosePhase.Element;
     private MagicElement _element;
     private MagicDirection _direction;
+    private bool _isPerformingMagicAnimation;
 
     public static Action<MagicChoosePhase> OnMagicPhaseChange;
 
-    [SerializeField] private VFXPlayerController playerVFXController;
+    private VFXPlayerController playerVFXController;
+    private Animator animator;
+
+    private static readonly int AnimArea = Animator.StringToHash("Area");
+    private static readonly int AnimForward = Animator.StringToHash("Forward");
+    private static readonly int AnimShield = Animator.StringToHash("Shield");
+
+    private void Awake()
+    {
+        playerVFXController = GetComponent<VFXPlayerController>();
+        animator = GetComponentInChildren<Animator>();    
+    }
 
     void Update()
     {
@@ -42,12 +55,13 @@ public class PlayerMagicController : NetworkBehaviour
 
     private void GetMagicInput()
     {
+        if (_isPerformingMagicAnimation) return;
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (_currentPhase == MagicChoosePhase.Element)
             {
-                _element = MagicElement.Earth; 
-                ChangePhase(MagicChoosePhase.Direction);
+                _element = MagicElement.Earth;
+                CastElement();
             }
             else
             {
@@ -60,7 +74,7 @@ public class PlayerMagicController : NetworkBehaviour
             if (_currentPhase == MagicChoosePhase.Element)
             {
                 _element = MagicElement.Water;
-                ChangePhase(MagicChoosePhase.Direction);
+                CastElement();
             }
             else
             {
@@ -73,7 +87,7 @@ public class PlayerMagicController : NetworkBehaviour
             if (_currentPhase == MagicChoosePhase.Element)
             {
                 _element = MagicElement.Wind;
-                ChangePhase(MagicChoosePhase.Direction);
+                CastElement();
             }
             else
             {
@@ -89,9 +103,34 @@ public class PlayerMagicController : NetworkBehaviour
         OnMagicPhaseChange?.Invoke(_currentPhase);
     }
 
+    private void CastElement()
+    {
+        StartCoroutine(CastElementCoroutine());
+    }
+
+    private IEnumerator CastElementCoroutine()
+    {
+        _isPerformingMagicAnimation = true;
+        yield return new WaitForSeconds(0f);
+        ChangePhase(MagicChoosePhase.Direction);
+        _isPerformingMagicAnimation = false;
+    }
+
     private void CastMagic()
+    {
+        _isPerformingMagicAnimation = true;
+        switch (_direction) 
+        {
+            case MagicDirection.Forward: animator.SetTrigger(AnimForward); return;
+            case MagicDirection.Around: animator.SetTrigger(AnimArea); return;
+            case MagicDirection.Shield: animator.SetTrigger(AnimShield); return;
+        }
+    }
+
+    public void AnimationCastMagic()
     {
         playerVFXController.CastMagicVFX(_element, _direction);
         ChangePhase(MagicChoosePhase.Element);
+        _isPerformingMagicAnimation = false;
     }
 }

@@ -174,8 +174,6 @@ public class PlayerMovementController : NetworkBehaviour
 
         _dashCooldownTimer -= Time.deltaTime;
 
-        HandleJumpInput();
-
         if (_dashRequested && !dashing && !diving && _dashCooldownTimer <= 0f)
             StartCoroutine(DashCoroutine());
         _dashRequested = false;
@@ -207,6 +205,7 @@ public class PlayerMovementController : NetworkBehaviour
 
     public void OnJump(InputValue value)
     {
+        if (dashing) return;
         if (value.isPressed && _isGrounded && !_jumping)
             Jump();
     }
@@ -252,12 +251,6 @@ public class PlayerMovementController : NetworkBehaviour
     // =========================================================================
     //  Jump
     // =========================================================================
-
-    private void HandleJumpInput()
-    {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && _isGrounded && !_jumping)
-            Jump();
-    }
 
     private void Jump()
     {

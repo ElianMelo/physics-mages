@@ -1,0 +1,347 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperLayer
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: BaseFemale
+    m_Weight: 0
+  - m_Path: BaseFemale/BodySegments
+    m_Weight: 0
+  - m_Path: BaseFemale/BodySegments/F_BottomBody
+    m_Weight: 0
+  - m_Path: BaseFemale/BodySegments/F_Head
+    m_Weight: 0
+  - m_Path: BaseFemale/BodySegments/F_TopBody
+    m_Weight: 0
+  - m_Path: BaseFemale/Face
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyebrows
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyebrows/F_eyebrows0
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyebrows/F_eyebrows1
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyebrows/F_eyebrows2
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyebrows/F_eyebrows3
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyebrows/F_eyebrows4
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyes
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyes/F_eyes0
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyes/F_eyes1
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyes/F_eyes2
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyes/F_eyes3
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Eyes/F_eyes4
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Mouths
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Mouths/F_mouth0
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Mouths/F_mouth1
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Mouths/F_mouth2
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Mouths/F_mouth3
+    m_Weight: 0
+  - m_Path: BaseFemale/Face/Mouths/F_mouth4
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_1
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_2
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_3
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_4
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_5
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_6
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_7
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_8
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_9
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_10
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_11
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_12
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_13
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair/F_hair_14
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_1b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_1b/F_hair_1b_Bun
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_2b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_3b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_3b/F_hair_3b_Bun
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_4b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_4b/F_hair_4b_Bun
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_5b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_6b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_7b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_8b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_9b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_9b/F_hair_9b_Buns
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_10b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_11b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_12b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_13b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_13b/F_hair_13b_Ponytail
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_14b
+    m_Weight: 0
+  - m_Path: BaseFemale/Hair_forHeadwear/F_hair_14b/F_hair_14b_Bun
+    m_Weight: 0
+  - m_Path: F_Mage
+    m_Weight: 0
+  - m_Path: F_Mage/F_Mage_Bottom
+    m_Weight: 0
+  - m_Path: F_Mage/F_Mage_Cape
+    m_Weight: 0
+  - m_Path: F_Mage/F_Mage_Headwear
+    m_Weight: 0
+  - m_Path: F_Mage/F_Mage_Scarf
+    m_Weight: 0
+  - m_Path: F_Mage/F_Mage_Staff
+    m_Weight: 0
+  - m_Path: F_Mage/F_Mage_Top
+    m_Weight: 0
+  - m_Path: rootSkeleton
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/Back_coatTail1
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/Back_coatTail1/Back_coatTail2
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/Back_coatTail1/Back_coatTail2/Back_coatTail3
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/Back_coatTail1/Back_coatTail2/Back_coatTail3/Back_coatTail4
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/Front_coatTail1
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/Front_coatTail1/Front_coatTail2
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/Front_coatTail1/Front_coatTail2/Front_coatTail3
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/Front_coatTail1/Front_coatTail2/Front_coatTail3/Front_oatTail4
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_coatTail_joint1
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_coatTail_joint1/L_coatTail_joint2
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_coatTail_joint1/L_coatTail_joint2/L_coatTail_joint3
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_coatTail_joint1/L_coatTail_joint2/L_coatTail_joint3/L_coatTail_joint4
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_thigh_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_thigh_joint/L_knee_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_thigh_joint/L_knee_joint/L_ankle_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_thigh_joint/L_knee_joint/L_ankle_joint/L_ball_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/L_thigh_joint/L_knee_joint/L_ankle_joint/L_ball_joint/L_toe_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_coatTail_joint1
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_coatTail_joint1/R_coatTail_joint2
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_coatTail_joint1/R_coatTail_joint2/R_coatTail_joint3
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_coatTail_joint1/R_coatTail_joint2/R_coatTail_joint3/R_coatTail_joint4
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_thigh_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_thigh_joint/R_knee_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_thigh_joint/R_knee_joint/R_ankle_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_thigh_joint/R_knee_joint/R_ankle_joint/R_ball_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/R_thigh_joint/R_knee_joint/R_ankle_joint/R_ball_joint/R_toe_joint
+    m_Weight: 0
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/bosom_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/cape_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/cape_joint1/cape_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/cape_joint1/cape_joint2/cape_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/cape_joint1/cape_joint2/cape_joint3/cape_joint4
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/cape_joint1/cape_joint2/cape_joint3/cape_joint4/cape_joint5
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/cape_joint1/cape_joint2/cape_joint3/cape_joint4/cape_joint5/cape_joint6
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_equip_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_equip_joint/BowRig
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_equip_joint/BowRig/bowJoint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_equip_joint/BowRig/bowJoint/stringJoint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_indexFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_indexFinger_joint1/L_indexFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_indexFinger_joint1/L_indexFinger_joint2/L_indexFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_midFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_midFinger_joint1/L_midFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_midFinger_joint1/L_midFinger_joint2/L_midFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_pinkyFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_pinkyFinger_joint1/L_pinkyFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_pinkyFinger_joint1/L_pinkyFinger_joint2/L_pinkyFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_ringFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_ringFinger_joint1/L_ringFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_ringFinger_joint1/L_ringFinger_joint2/L_ringFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_thumbFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_thumbFinger_joint1/L_thumbFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/L_clavicle_joint/L_shoulder_joint/L_elbow_joint/L_wrist_joint/L_thumbFinger_joint1/L_thumbFinger_joint2/L_thumbFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/eyes_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/hair_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/hair_joint1/hair_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/hair_joint1/hair_joint2/hair_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/hair_joint1/hair_joint2/hair_joint3/hair_joint4
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/L_Pigtail_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/L_Pigtail_joint1/L_Pigtail_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/L_Pigtail_joint1/L_Pigtail_joint2/L_Pigtail_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/R_Pigtail_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/R_Pigtail_joint1/R_Pigtail_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/R_Pigtail_joint1/R_Pigtail_joint2/R_Pigtail_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/topPonytail_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/topPonytail_joint1/topPonytail_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/hair_joint0/topPonytail_joint1/topPonytail_joint2/topPonytail_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/L_eyebrow_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/mouth_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/neck_joint/head_joint/R_eyebrow_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_equip_joint
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_indexFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_indexFinger_joint1/R_indexFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_indexFinger_joint1/R_indexFinger_joint2/R_indexFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_midFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_midFinger_joint1/R_midFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_midFinger_joint1/R_midFinger_joint2/R_midFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_pinkyFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_pinkyFinger_joint1/R_pinkyFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_pinkyFinger_joint1/R_pinkyFinger_joint2/R_pinkyFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_ringFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_ringFinger_joint1/R_ringFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_ringFinger_joint1/R_ringFinger_joint2/R_ringFinger_joint3
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_thumbFinger_joint1
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_thumbFinger_joint1/R_thumbFinger_joint2
+    m_Weight: 1
+  - m_Path: rootSkeleton/pelvis_joint/waist_joint/chest_joint/R_clavicle_joint/R_shoulder_joint/R_elbow_joint/R_wrist_joint/R_thumbFinger_joint1/R_thumbFinger_joint2/R_thumbFinger_joint3
+    m_Weight: 1

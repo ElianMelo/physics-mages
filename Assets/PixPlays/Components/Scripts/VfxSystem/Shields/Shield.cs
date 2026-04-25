@@ -15,6 +15,11 @@ namespace PixPlays.ElementalVFX
             PlayImplementation();
         }
 
+        public void CallPlayImplementation()
+        {
+            PlayImplementation();
+        }
+
         public override void Stop()
         {
             base.Stop();

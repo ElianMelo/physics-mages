@@ -1,5 +1,6 @@
 using AYellowpaper.SerializedCollections;
 using FishNet.Object;
+using PixPlays.ElementalVFX;
 using System.Collections;
 using UnityEngine;
 
@@ -31,10 +32,11 @@ public class VFXPlayerController : NetworkBehaviour
         NetworkObject networkObject;
         _currentMagicPrefabData = _magicVFXToPrefabData[currentMagicVFX];
         networkObject = Instantiate(_currentMagicPrefabData.prefab, position, rotation);
-        networkObject.GetComponent<MagicController>().SetupMagicData(currentMagicVFX.element, currentMagicVFX.direction, OwnerId);
+        MagicController magicController = networkObject.GetComponent<MagicController>();
+        HandleShield(magicController, currentMagicVFX);
+        magicController.SetupMagicData(currentMagicVFX.element, currentMagicVFX.direction, OwnerId);
+        HandleFollowPlayer(magicController, currentMagicVFX);
         Spawn(networkObject);
-        if (_currentMagicPrefabData.followPlayer)
-            networkObject.transform.SetParent(transform);
         if (_currentMagicPrefabData.initialPosition != null)
         {
             networkObject.transform.position = _currentMagicPrefabData.initialPosition.position;
@@ -43,6 +45,20 @@ public class VFXPlayerController : NetworkBehaviour
         ParticleSystem particle = networkObject.GetComponent<ParticleSystem>();
         if(particle != null) particle.Play();
         StartCoroutine(DespawnAfterSeconds(networkObject.gameObject, _currentMagicPrefabData.duration));
+    }
+
+    private void HandleFollowPlayer(MagicController magicController, MagicVFX currentMagicVFX)
+    {
+        if (!_currentMagicPrefabData.followPlayer) return;
+        magicController.SetupTarget(transform, new Vector3(0f, currentMagicVFX.element == MagicElement.Earth ? 0.7f : 1f, 0f));
+    }
+
+    private void HandleShield(MagicController magicController, MagicVFX currentMagicVFX)
+    {
+        if (currentMagicVFX.direction != MagicDirection.Shield) return;
+        Shield shield = magicController.GetComponent<Shield>();
+        if (shield == null) return;
+        shield.CallPlayImplementation();
     }
 
     private IEnumerator DespawnAfterSeconds(GameObject entitySpawned, float secondsBeforeDespawn)

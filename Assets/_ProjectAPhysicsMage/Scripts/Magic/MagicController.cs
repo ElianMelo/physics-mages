@@ -1,20 +1,30 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MagicController : NetworkBehaviour
 {
     public readonly SyncVar<MagicElement> element = new SyncVar<MagicElement>();
     public readonly SyncVar<MagicDirection> direction = new SyncVar<MagicDirection>();
     public readonly SyncVar<int> ownerID = new SyncVar<int>();
+    private Transform target;
+    private Vector3 offset;
+    private float smoothTime = 0.05f;
+    private Vector3 velocity = Vector3.zero;
     private Collider _collider;
     private void Awake() {
         _collider = GetComponent<Collider>();
     }
 
-    private void Update() { }
+    private void Update() {
+        if (target == null) return;
+        transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref velocity, smoothTime);
+    }
+    public void SetupTarget(Transform target, Vector3 offset)
+    {
+        this.target = target;
+        this.offset = offset;
+    }
 
     public void SetupMagicData(MagicElement element, MagicDirection direction, int ownerID)
     {

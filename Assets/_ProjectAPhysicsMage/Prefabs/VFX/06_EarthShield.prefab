@@ -205,7 +205,6 @@ GameObject:
   - component: {fileID: 4798439033091483149}
   - component: {fileID: 2504934813235154632}
   - component: {fileID: 1863690208381557862}
-  - component: {fileID: 8144849504921322463}
   - component: {fileID: 4734781164895445470}
   m_Layer: 0
   m_Name: shard7
@@ -287,28 +286,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8144849504921322463
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362406259273226191}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1766809595301799932, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &4734781164895445470
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -347,7 +324,6 @@ GameObject:
   - component: {fileID: 7591539386604493728}
   - component: {fileID: 2244064757806088389}
   - component: {fileID: 5431581412881819603}
-  - component: {fileID: 5789635923862064788}
   - component: {fileID: 7015154110770669433}
   m_Layer: 0
   m_Name: shard1
@@ -429,28 +405,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5789635923862064788
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321566015466592810}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4122916103799640655, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &7015154110770669433
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -489,7 +443,6 @@ GameObject:
   - component: {fileID: 1494953442020371730}
   - component: {fileID: 1399582378898527529}
   - component: {fileID: 5573147179980839120}
-  - component: {fileID: 7359427859215592597}
   - component: {fileID: 1284311455472774212}
   m_Layer: 0
   m_Name: shard13
@@ -571,28 +524,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7359427859215592597
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987620987568024634}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2935426519696197319, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &1284311455472774212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -631,7 +562,6 @@ GameObject:
   - component: {fileID: 1663483984548815283}
   - component: {fileID: 2643462389455673947}
   - component: {fileID: 2647908806940964570}
-  - component: {fileID: 292740057354263004}
   - component: {fileID: 2655183025057105475}
   m_Layer: 0
   m_Name: shard8
@@ -713,28 +643,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &292740057354263004
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125055734601779813}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -547343557084233894, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &2655183025057105475
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -808,7 +716,6 @@ GameObject:
   - component: {fileID: 1823723435256125925}
   - component: {fileID: 261194677241297173}
   - component: {fileID: 3623700999187197761}
-  - component: {fileID: 8087756186655558757}
   - component: {fileID: 6548250709122244265}
   m_Layer: 0
   m_Name: shard5 (1)
@@ -890,28 +797,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8087756186655558757
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2259487398186304638}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5673084798034043110, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &6548250709122244265
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -950,7 +835,6 @@ GameObject:
   - component: {fileID: 8832980620462274973}
   - component: {fileID: 5317524810061104697}
   - component: {fileID: 9091548560952408502}
-  - component: {fileID: 6175098850006366766}
   - component: {fileID: 8961108498190025479}
   m_Layer: 0
   m_Name: shard5
@@ -1032,28 +916,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6175098850006366766
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2403478395328788981}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5673084798034043110, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &8961108498190025479
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1092,7 +954,6 @@ GameObject:
   - component: {fileID: 3656888990893158041}
   - component: {fileID: 73399351960831713}
   - component: {fileID: 1271584005093079969}
-  - component: {fileID: 8801513697528035896}
   - component: {fileID: 8064610253233063715}
   m_Layer: 0
   m_Name: shard9 (1)
@@ -1174,28 +1035,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8801513697528035896
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2442283261233063238}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7594102951655065521, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &8064610253233063715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1234,7 +1073,6 @@ GameObject:
   - component: {fileID: 6572366983983367086}
   - component: {fileID: 3675778208221457651}
   - component: {fileID: 5768441388167118781}
-  - component: {fileID: 7862404053748119920}
   - component: {fileID: 4357519614439388261}
   m_Layer: 0
   m_Name: shard12
@@ -1316,28 +1154,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7862404053748119920
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3717361894063673445}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5709274730607971892, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &4357519614439388261
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1376,7 +1192,6 @@ GameObject:
   - component: {fileID: 3055107982454745236}
   - component: {fileID: 7938319804401780123}
   - component: {fileID: 1429279354346954918}
-  - component: {fileID: 3650218645344950423}
   - component: {fileID: 1239504526284389148}
   m_Layer: 0
   m_Name: shard9
@@ -1458,28 +1273,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3650218645344950423
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4185269279769743515}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7594102951655065521, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &1239504526284389148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1518,7 +1311,6 @@ GameObject:
   - component: {fileID: 1251510119400601861}
   - component: {fileID: 1471301521814162614}
   - component: {fileID: 3929961400774141207}
-  - component: {fileID: 3955209680445693033}
   - component: {fileID: 5292552031991427884}
   m_Layer: 0
   m_Name: shard6
@@ -1600,28 +1392,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3955209680445693033
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4283345460503630154}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8094190371653704284, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &5292552031991427884
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1704,7 +1474,6 @@ GameObject:
   - component: {fileID: 2110848833558510453}
   - component: {fileID: 2284222431267032840}
   - component: {fileID: 3406878789192940155}
-  - component: {fileID: 5772737569961667064}
   - component: {fileID: 2133013166743303750}
   m_Layer: 0
   m_Name: shard14
@@ -1786,28 +1555,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5772737569961667064
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4442249853246756241}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2727622749864163269, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &2133013166743303750
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1846,7 +1593,6 @@ GameObject:
   - component: {fileID: 114105469393549919}
   - component: {fileID: 9143059165764066731}
   - component: {fileID: 3247764827649524824}
-  - component: {fileID: 3015489375974996297}
   - component: {fileID: 7556897411571342191}
   m_Layer: 0
   m_Name: shard11 (1)
@@ -1928,28 +1674,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3015489375974996297
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4831212962570681780}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6873384914211470390, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &7556897411571342191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1988,7 +1712,6 @@ GameObject:
   - component: {fileID: 5700420227284216359}
   - component: {fileID: 7369488964328119785}
   - component: {fileID: 7373785450767652659}
-  - component: {fileID: 7026954317138483060}
   - component: {fileID: 6083401676303387302}
   m_Layer: 0
   m_Name: shard4
@@ -2070,28 +1793,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7026954317138483060
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6167066335252274128}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1160288528575290666, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &6083401676303387302
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2130,7 +1831,6 @@ GameObject:
   - component: {fileID: 2312477794456923848}
   - component: {fileID: 3281895550758364752}
   - component: {fileID: 6951964063670966162}
-  - component: {fileID: 7677600566259235758}
   - component: {fileID: 4414492717113586305}
   m_Layer: 0
   m_Name: shard11
@@ -2212,28 +1912,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7677600566259235758
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6450488114925246660}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6873384914211470390, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &4414492717113586305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2272,7 +1950,6 @@ GameObject:
   - component: {fileID: 7002034187635436301}
   - component: {fileID: 5025380434916526872}
   - component: {fileID: 4904104031624775149}
-  - component: {fileID: 1368158505565657253}
   - component: {fileID: 5409787297534769472}
   m_Layer: 0
   m_Name: shard2
@@ -2354,28 +2031,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1368158505565657253
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7389565947329836664}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 697903988925253736, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &5409787297534769472
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2414,7 +2069,6 @@ GameObject:
   - component: {fileID: 1986545743041736217}
   - component: {fileID: 7897904190237634296}
   - component: {fileID: 3976534474652904467}
-  - component: {fileID: 330837625639807061}
   - component: {fileID: 2203333592912040079}
   m_Layer: 0
   m_Name: shard6 (1)
@@ -2496,28 +2150,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &330837625639807061
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256222544799049018}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8094190371653704284, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &2203333592912040079
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2556,7 +2188,6 @@ GameObject:
   - component: {fileID: 69880768592907670}
   - component: {fileID: 1475956032917255141}
   - component: {fileID: 7222554260640857081}
-  - component: {fileID: 2123470766076080824}
   - component: {fileID: 554042481304096015}
   m_Layer: 0
   m_Name: shard3
@@ -2638,28 +2269,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2123470766076080824
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8401067297755383477}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6017172911788317743, guid: 4edbce464557e5c43a7083e612157473, type: 3}
 --- !u!54 &554042481304096015
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -50,10 +50,10 @@ public class PlayerVFXController : NetworkBehaviour
         networkObject = Instantiate(_currentMagicPrefabData.prefab, targetPosition, targetRotation);
         MagicController magicController = networkObject.GetComponent<MagicController>();
         HandleShield(magicController, currentMagicVFX, _currentMagicPrefabData.duration);
-        magicController.SetupMagicData(currentMagicVFX.element, currentMagicVFX.direction, OwnerId);
+        magicController.SetupMagicData(currentMagicVFX.element, currentMagicVFX.direction, OwnerId, _playerController.ObjectId);
         magicController.SetupForcedDirection(forcedDiretion);
-        HandleFollowPlayer(magicController, currentMagicVFX);
         Spawn(networkObject);
+        HandleFollowPlayer(magicController, currentMagicVFX);
         ParticleSystem particle = networkObject.GetComponent<ParticleSystem>();
         if(particle != null) particle.Play();
         StartCoroutine(DespawnAfterSeconds(networkObject.gameObject, _currentMagicPrefabData.duration));

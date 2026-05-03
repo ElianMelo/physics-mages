@@ -8,6 +8,7 @@ public class MagicController : NetworkBehaviour
     public readonly SyncVar<MagicElement> element = new SyncVar<MagicElement>();
     public readonly SyncVar<MagicDirection> direction = new SyncVar<MagicDirection>();
     public readonly SyncVar<int> ownerID = new SyncVar<int>();
+    public readonly SyncVar<int> objectID = new SyncVar<int>();
     private Transform target;
     private Vector3 offset;
     private float smoothTime = 0.05f;
@@ -34,13 +35,29 @@ public class MagicController : NetworkBehaviour
     {
         this.target = target;
         this.offset = offset;
+        SetupTargetForClients(offset);
     }
 
-    public void SetupMagicData(MagicElement element, MagicDirection direction, int ownerID)
+    [ObserversRpc]
+    private void SetupTargetForClients(Vector3 offset)
+    {
+        if (NetworkManager.ClientManager.Objects.Spawned
+            .TryGetValue(objectID.Value, out NetworkObject nob))
+        {
+            PlayerController target =
+                nob.GetComponent<PlayerController>();
+
+            this.target = target.transform;
+            this.offset = offset;
+        }
+    }
+
+    public void SetupMagicData(MagicElement element, MagicDirection direction, int ownerID, int objectID)
     {
         this.element.Value = element;
         this.direction.Value = direction;
         this.ownerID.Value = ownerID;
+        this.objectID.Value = objectID;
     }
 
     public void SetupForcedDirection(Vector3 direction)

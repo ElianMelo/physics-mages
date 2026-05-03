@@ -34,11 +34,11 @@ public class GameManager : MonoBehaviour
             currentGameState = currentGameState == GameState.Moving ? GameState.Drawing : GameState.Moving;
             SwitchState();
         }
-        if(Keyboard.current.digit9Key.wasPressedThisFrame)
+        if(Keyboard.current.digit1Key.wasPressedThisFrame)
         {
             StartHost();
         }
-        if (Keyboard.current.digit0Key.wasPressedThisFrame)
+        if (Keyboard.current.digit2Key.wasPressedThisFrame)
         {
             StartClient();
         }

@@ -9,7 +9,8 @@ public enum MagicElement
     None,
     Earth,
     Water,
-    Wind
+    Wind,
+    Fire
 }
 
 public enum MagicDirection

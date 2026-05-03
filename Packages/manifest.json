@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.alven.fishnet.unitytransport": "https://github.com/ooonush/FishyUnityTransport.git?path=Assets/FishNet/Plugins/FishyUnityTransport",
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "2.0.11",
     "com.unity.cinemachine": "3.1.6",
     "com.unity.collab-proxy": "2.11.4",

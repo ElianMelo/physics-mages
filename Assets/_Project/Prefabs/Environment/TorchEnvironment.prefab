@@ -242,7 +242,7 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 13
   <SpawnableCollectionId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 8886789438561975885
+  <AssetPathHash>k__BackingField: 13685012614117692511
   SceneId: 0
   SerializedTransformProperties:
     Position: {x: 0, y: 1.973, z: 0.257}
@@ -267,7 +267,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584237774889552620
+  _initializedTimestamp: -8584237704832337298
 --- !u!114 &1122682689908582376
 MonoBehaviour:
   m_ObjectHideFlags: 0

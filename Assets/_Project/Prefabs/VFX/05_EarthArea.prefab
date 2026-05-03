@@ -18977,12 +18977,12 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 8
   <SpawnableCollectionId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 7098118698676949238
+  <AssetPathHash>k__BackingField: 8977936131891559272
   SceneId: 0
   SerializedTransformProperties:
     Position: {x: -0.0031948, y: 0.005104, z: 0.0020759}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
-    Scale: {x: 2, y: 2, z: 2}
+    Scale: {x: 3.5, y: 3.5, z: 3.5}
     IsValid: 1
   <IsNested>k__BackingField: 0
   WasActiveDuringEdit: 0
@@ -18991,7 +18991,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
-  - {fileID: 0}
+  - {fileID: 7193789508059274689}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -19002,7 +19002,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584250736014259728
+  _initializedTimestamp: -8584237704832337298
 --- !u!114 &7193789508059274689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19015,9 +19015,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c6f98f9bed6154181f0733f3a84991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicController
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 4709357970350784659}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 4709357970350784659}
 --- !u!135 &2913317051059361199
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -3874,7 +3874,7 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 1
   <SpawnableCollectionId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 2376813930438937966
+  <AssetPathHash>k__BackingField: 6612831486392114084
   SceneId: 0
   SerializedTransformProperties:
     Position: {x: 0.35974, y: 2.263, z: -0.81237}
@@ -3894,6 +3894,7 @@ MonoBehaviour:
   - {fileID: 7471741888315537379}
   - {fileID: 3703199344278442338}
   - {fileID: 3225008697146876222}
+  - {fileID: 5145424122112709079}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -3904,7 +3905,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584245234040777497
+  _initializedTimestamp: -8584237704832337298
 --- !u!114 &3703199344278442338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4061,9 +4062,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Animating.NetworkAnimator
-  _componentIndexCache: 255
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1673914528845359768}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1673914528845359768}
   IgnoredParameters: []
   _animator: {fileID: 6603143982152622029}
   _synchronizeWhenDisabled: 0

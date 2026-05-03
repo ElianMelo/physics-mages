@@ -132,7 +132,7 @@ public class PlayerMagicController : NetworkBehaviour
     public void AnimationCastMagic()
     {
         if (!IsOwner) return;
-        playerVFXController.CastMagicVFX(_element, _direction, Vector3.zero);
+        playerVFXController.CastMagicVFX(_element, _direction, Camera.main.transform.forward);
         ChangePhase(MagicChoosePhase.Element);
         _isPerformingMagicAnimation = false;
     }

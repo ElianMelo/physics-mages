@@ -30,11 +30,17 @@ public class FireSourceController : NetworkBehaviour
         }
         if (magicController.element.Value == MagicElement.Water)
         {
-            StartCoroutine(SwitchActiveFireSource());
+            SwitchActiveFireSource();
         }
     }
 
-    private IEnumerator SwitchActiveFireSource()
+    [ObserversRpc]
+    private void SwitchActiveFireSource()
+    {
+        StartCoroutine(SwitchActiveFireSourceRoutine());
+    }
+
+    private IEnumerator SwitchActiveFireSourceRoutine()
     {
         isFireActive = false;
         lightSource.intensity = 0f;

@@ -19,7 +19,7 @@ public class MagicController : NetworkBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    private void Update() {
+    private void LateUpdate() {
         if (target == null) return;
         transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref velocity, smoothTime);
     }

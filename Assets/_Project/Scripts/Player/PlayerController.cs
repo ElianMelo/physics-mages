@@ -1,3 +1,4 @@
+using FishNet.Managing.Server;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using System.Collections;
@@ -69,9 +70,22 @@ public class PlayerController : NetworkBehaviour
         ReceiveDamageServer(10);
     }
 
-    [ServerRpc(RunLocally=true)]
+    private void ParticleSpawn()
+    {
+        NetworkObject nob = NetworkManager.GetPooledInstantiated(PooledObjectsManager.Instance.bloodParticlePrefab,
+            transform.position, Quaternion.Euler(-90f, 0f, 0f), IsServerInitialized);
+        ServerManager.Spawn(nob);
+        StartCoroutine(DelayedDespawn(nob));
+        IEnumerator DelayedDespawn(NetworkObject nob) {
+            yield return new WaitForSeconds(2f);
+            ServerManager.Despawn(nob);
+        }
+    }
+
+    [ServerRpc]
     private void ReceiveDamageServer(int amount)
     {
         playerHealth.Value -= amount;
+        ParticleSpawn();
     }
 }

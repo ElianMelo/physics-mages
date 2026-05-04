@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 934570884}
   - component: {fileID: 7443408887813606060}
   - component: {fileID: 9055832313126726713}
+  - component: {fileID: 1151884832749566934}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -53,7 +54,7 @@ MonoBehaviour:
   _refreshDefaultPrefabs: 0
   _runInBackground: 1
   _dontDestroyOnLoad: 1
-  _objectPool: {fileID: 0}
+  _objectPool: {fileID: 1151884832749566934}
   _persistence: 0
 --- !u!114 &934570884
 MonoBehaviour:
@@ -118,6 +119,19 @@ MonoBehaviour:
     PacketJitterMS: 0
     PacketDropRate: 0
   m_MaximumClients: 4095
+--- !u!114 &1151884832749566934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443408887813606051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb13d174096685549b1d6a94d726ff7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Utility.Performance.DefaultObjectPool
+  _enabled: 1
 --- !u!1001 &2130063410
 PrefabInstance:
   m_ObjectHideFlags: 0

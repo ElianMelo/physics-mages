@@ -113,6 +113,7 @@ public class PlayerMagicController : NetworkBehaviour
     private IEnumerator CastElementCoroutine()
     {
         _isPerformingMagicAnimation = true;
+        playerVFXController.ChangeAuraRpc(_element);
         yield return new WaitForSeconds(0f);
         ChangePhase(MagicChoosePhase.Direction);
         _isPerformingMagicAnimation = false;
@@ -121,6 +122,7 @@ public class PlayerMagicController : NetworkBehaviour
     private void CastMagic()
     {
         _isPerformingMagicAnimation = true;
+        playerVFXController.ChangeAuraRpc(MagicElement.None);
         switch (_direction) 
         {
             case MagicDirection.Forward: animator.SetTrigger(AnimForward); return;

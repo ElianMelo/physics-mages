@@ -1,6 +1,6 @@
 using AYellowpaper.SerializedCollections;
 using FishNet.Object;
-using PixPlays.ElementalVFX;
+using FishNet.Object.Synchronizing;
 using System.Collections;
 using UnityEngine;
 
@@ -10,11 +10,50 @@ public class PlayerVFXController : NetworkBehaviour
     private MagicPrefabData _currentMagicPrefabData;
     [SerializedDictionary("MagicVFX", "PrefabData")]
     public SerializedDictionary<MagicVFX, MagicPrefabData> _magicVFXToPrefabData;
+    public ParticleSystem earthAura;
+    public ParticleSystem waterAura;
+    public ParticleSystem windAura;
     private PlayerController _playerController;
+    private readonly SyncVar<MagicElement> auraElement = new SyncVar<MagicElement>(new SyncTypeSettings(0.1f));
 
     private void Awake()
     {
         _playerController = GetComponent<PlayerController>();
+    }
+
+    public override void OnStartClient()
+    {
+        StopAura();
+        auraElement.OnChange += OnAuraChanged;
+    }
+
+    private void OnAuraChanged(MagicElement prev, MagicElement next, bool asServer)
+    {
+        StartAura(next);
+    }
+
+    [ServerRpc(RunLocally=true)]
+    public void ChangeAuraRpc(MagicElement element)
+    {
+        auraElement.Value = element;
+    }
+
+    private void StartAura(MagicElement element)
+    {
+        StopAura();
+        switch (element)
+        {
+            case MagicElement.Earth: earthAura.Play(); return;
+            case MagicElement.Water: waterAura.Play(); return;
+            case MagicElement.Wind: windAura.Play(); return;
+        }
+    }
+
+    private void StopAura()
+    {
+        earthAura.Stop();
+        waterAura.Stop();
+        windAura.Stop();
     }
 
     public void CastMagicVFX(MagicElement element, MagicDirection direction, Vector3 forcedDirection)

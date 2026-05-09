@@ -1,20 +1,30 @@
 using FishNet.Managing.Server;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : NetworkBehaviour
 {
-    [SerializeField] private GameObject playerHealthCanvas;
-    [SerializeField] private Image playerHealthImage;
-    [SerializeField] private float maxHealth;    
-    private readonly SyncVar<float> playerHealth = new SyncVar<float>(new SyncTypeSettings(1f));
+    [SerializeField] private GameObject healthCanvas;
+    [SerializeField] private Image healthImage;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float maxMana;
+
+    public PlayerVFXController playerVFXController { get; private set; }
+
+    private readonly SyncVar<float> health = new SyncVar<float>(new SyncTypeSettings(1f));
+    private readonly SyncVar<float> mana = new SyncVar<float>(new SyncTypeSettings(0.1f));
     private readonly SyncVar<bool> hasActiveShield = new SyncVar<bool>(new SyncTypeSettings(0.1f));
     private readonly SyncVar<MagicElement> shieldElement = new SyncVar<MagicElement>(new SyncTypeSettings(0.1f));
+
+    public float Mana => mana.Value;
+
+    public static Action<float> OnManaChanged;
+
     private Coroutine _shieldCoroutine;
-    public PlayerVFXController playerVFXController { get; private set; }
 
     private void Awake()
     {
@@ -23,16 +33,29 @@ public class PlayerController : NetworkBehaviour
 
     public override void OnStartClient()
     {
-        playerHealth.Value = maxHealth;
+        health.Value = maxHealth;
+        mana.Value = maxMana;
         hasActiveShield.Value = false;
-        playerHealth.OnChange += OnHealthChange;
+        health.OnChange += OnHealthChange;
+        mana.OnChange += OnManaChange;
         if (!IsOwner) return;
-        playerHealthCanvas.SetActive(false);
+        healthCanvas.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (!IsOwner) return;
     }
 
     private void OnHealthChange(float prev, float next, bool asServer)
     {
-        playerHealthImage.fillAmount = next / maxHealth;
+        healthImage.fillAmount = next / maxHealth;
+    }
+
+    private void OnManaChange(float prev, float next, bool asServer)
+    {
+        if (!IsOwner) return;
+        OnManaChanged?.Invoke(next);
     }
 
     public bool HasActiveShield()
@@ -70,6 +93,12 @@ public class PlayerController : NetworkBehaviour
         ReceiveDamageServer(10);
     }
 
+    public void UpdateMana(float amount)
+    {
+        if (!IsOwner) return;
+        UpdateManaServer(amount);
+    }
+
     private void ParticleSpawn()
     {
         NetworkObject nob = NetworkManager.GetPooledInstantiated(PooledObjectsManager.Instance.bloodParticlePrefab,
@@ -83,9 +112,15 @@ public class PlayerController : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void ReceiveDamageServer(int amount)
+    private void ReceiveDamageServer(float amount)
     {
-        playerHealth.Value -= amount;
+        health.Value -= amount;
         ParticleSpawn();
+    }
+
+    [ServerRpc]
+    private void UpdateManaServer(float amount)
+    {
+        mana.Value -= amount;
     }
 }

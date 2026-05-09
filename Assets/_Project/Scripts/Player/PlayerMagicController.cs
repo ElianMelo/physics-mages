@@ -1,4 +1,5 @@
 using FishNet.Component.Animating;
+using FishNet.Example.Scened;
 using FishNet.Object;
 using System;
 using System.Collections;
@@ -33,11 +34,15 @@ public class PlayerMagicController : NetworkBehaviour
     private MagicElement _element;
     private MagicDirection _direction;
     private bool _isPerformingMagicAnimation;
+    private bool _isInSafeCheck;
 
     public static Action<MagicChoosePhase> OnMagicPhaseChange;
 
     private PlayerVFXController playerVFXController;
+    private PlayerController playerController;
+    private PlayerRagdollController playerRagdollController;
     private NetworkAnimator animator;
+    private Coroutine safeCheckRoutine;
 
     private static readonly int AnimArea = Animator.StringToHash("Area");
     private static readonly int AnimForward = Animator.StringToHash("Forward");
@@ -46,6 +51,8 @@ public class PlayerMagicController : NetworkBehaviour
     private void Awake()
     {
         playerVFXController = GetComponent<PlayerVFXController>();
+        playerController = GetComponent<PlayerController>();
+        playerRagdollController = GetComponent<PlayerRagdollController>();
         animator = GetComponent<NetworkAnimator>();    
     }
 
@@ -58,6 +65,8 @@ public class PlayerMagicController : NetworkBehaviour
     private void GetMagicInput()
     {
         if (_isPerformingMagicAnimation) return;
+        if (playerRagdollController.IsStaggered) return;
+        if (playerController.Mana < 10f) return;
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (_currentPhase == MagicChoosePhase.Element)
@@ -122,7 +131,11 @@ public class PlayerMagicController : NetworkBehaviour
     private void CastMagic()
     {
         _isPerformingMagicAnimation = true;
+        _isInSafeCheck = true;
+        playerController.UpdateMana(10f);
         playerVFXController.ChangeAuraRpc(MagicElement.None);
+        if (safeCheckRoutine != null) StopCoroutine(safeCheckRoutine);
+        safeCheckRoutine = StartCoroutine(AnimationSafeCheck());
         switch (_direction) 
         {
             case MagicDirection.Forward: animator.SetTrigger(AnimForward); return;
@@ -131,11 +144,22 @@ public class PlayerMagicController : NetworkBehaviour
         }
     }
 
+    private IEnumerator AnimationSafeCheck()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _isInSafeCheck = false;
+        ChangePhase(MagicChoosePhase.Element);
+        _isPerformingMagicAnimation = false;
+    }
+
     public void AnimationCastMagic()
     {
         if (!IsOwner) return;
+        if (!_isInSafeCheck) return;
+        if (safeCheckRoutine != null) StopCoroutine(safeCheckRoutine);
         playerVFXController.CastMagicVFX(_element, _direction, Camera.main.transform.forward);
         ChangePhase(MagicChoosePhase.Element);
         _isPerformingMagicAnimation = false;
+        _isInSafeCheck = false;
     }
 }

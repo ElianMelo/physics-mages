@@ -1865,28 +1865,13 @@ PrefabInstance:
       addedObject: {fileID: 3083954293888268152}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6603143982152622029}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4077026458855445763}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9054290034054238412}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1906130808478364173}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7471741888315537379}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1673914528845359768}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3703199344278442338}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8561910151723886659}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3225008697146876222}
@@ -1898,7 +1883,22 @@ PrefabInstance:
       addedObject: {fileID: 4189022730077744650}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 6603143982152622029}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8561910151723886659}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5145424122112709079}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3703199344278442338}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1673914528845359768}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9054290034054238412}
   m_SourcePrefab: {fileID: 100100000, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
 --- !u!4 &984182346015203889 stripped
 Transform:
@@ -2011,6 +2011,197 @@ MonoBehaviour:
     m_Bits: 64
   diving: 0
   state: 0
+--- !u!114 &4077026458855445763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a074b2972fd4ad4ab93632b1d239ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMagicController
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 1673914528845359768}
+  _networkObjectCache: {fileID: 1673914528845359768}
+--- !u!114 &1906130808478364173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c222bec13e3bc43b2bcc10bacba8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRagdollController
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 1673914528845359768}
+  _networkObjectCache: {fileID: 1673914528845359768}
+--- !u!114 &7471741888315537379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4befe9e0b816d864d953c842b0586e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayerController
+  _componentIndexCache: 3
+  _addedNetworkObject: {fileID: 1673914528845359768}
+  _networkObjectCache: {fileID: 1673914528845359768}
+  _magicVFXToPrefabData:
+    _serializedList:
+    - Key:
+        element: 3
+        direction: 1
+      Value:
+        initialPosition: {fileID: 3668218671945351265}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 4448867310044942114, guid: a24e5c86fafb7fc4cbaf8152154a4c7a, type: 3}
+    - Key:
+        element: 3
+        direction: 2
+      Value:
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 9079461463646656299, guid: 2b31588c944e65945a786af6b87f0a12, type: 3}
+    - Key:
+        element: 3
+        direction: 3
+      Value:
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 1
+        duration: 10
+        prefab: {fileID: 1690259015841541202, guid: bc7a714c244d08e44af2ab5484c4bdb9, type: 3}
+    - Key:
+        element: 1
+        direction: 1
+      Value:
+        initialPosition: {fileID: 1865879742284111284}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 220459494885011575, guid: f33070ff186893c4a9b3cdd87e486c6b, type: 3}
+    - Key:
+        element: 1
+        direction: 2
+      Value:
+        initialPosition: {fileID: 4175944487351169333}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 4709357970350784659, guid: ef178c2f964c0394ab5d7d48593e0b60, type: 3}
+    - Key:
+        element: 1
+        direction: 3
+      Value:
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 1
+        duration: 10
+        prefab: {fileID: 1178953370205012044, guid: d85bf8e3b4a60b5498257bd67dafa85d, type: 3}
+    - Key:
+        element: 2
+        direction: 1
+      Value:
+        initialPosition: {fileID: 3668218671945351265}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 585958372140572181, guid: 35ddcef5a77eed346b9d7d08d33580d9, type: 3}
+    - Key:
+        element: 2
+        direction: 2
+      Value:
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 0
+        duration: 2
+        prefab: {fileID: 6569730060633869137, guid: 9d0ed88d12288124593937d4dbcd0116, type: 3}
+    - Key:
+        element: 2
+        direction: 3
+      Value:
+        initialPosition: {fileID: 2880242346645065208}
+        followPlayer: 1
+        duration: 10
+        prefab: {fileID: 4559115991859758748, guid: 1ac7cf413880d6e48aab8a4797b8b494, type: 3}
+  earthAura: {fileID: 4455550330690885129}
+  waterAura: {fileID: 4642433880546292324}
+  windAura: {fileID: 3533469407000647843}
+--- !u!114 &3225008697146876222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b4f92db1053a84428b2d9b4f0c3c951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _componentIndexCache: 5
+  _addedNetworkObject: {fileID: 1673914528845359768}
+  _networkObjectCache: {fileID: 1673914528845359768}
+  healthCanvas: {fileID: 7303437000027249280}
+  healthImage: {fileID: 6508350436994615202}
+  maxHealth: 100
+  maxMana: 100
+--- !u!54 &83450811882719951
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &4189022730077744650
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Material: {fileID: 13400000, guid: 07370bb3eb7d61e4385b47567b5977fb, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1075511
+  m_Height: 1.4885665
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.78984433, z: 0.04273033}
 --- !u!95 &6603143982152622029
 Animator:
   serializedVersion: 7
@@ -2033,7 +2224,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4077026458855445763
+--- !u!114 &8561910151723886659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &5145424122112709079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2042,12 +2263,126 @@ MonoBehaviour:
   m_GameObject: {fileID: 4303757023163030372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a074b2972fd4ad4ab93632b1d239ab2, type: 3}
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMagicController
-  _componentIndexCache: 1
+  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Animating.NetworkAnimator
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1673914528845359768}
   _networkObjectCache: {fileID: 1673914528845359768}
+  IgnoredParameters: []
+  _animator: {fileID: 6603143982152622029}
+  _synchronizeWhenDisabled: 0
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
+--- !u!114 &3703199344278442338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
+  _componentIndexCache: 4
+  _addedNetworkObject: {fileID: 1673914528845359768}
+  _networkObjectCache: {fileID: 1673914528845359768}
+  _componentConfiguration: 2
+  _synchronizeParent: 0
+  _packing:
+    Position: 1
+    Rotation: 1
+    Scale: 0
+  _useScaledTime: 1
+  _interpolation: 1
+  _extrapolation: 1
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _clientAuthoritative: 1
+  _sendToOwner: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSensitivity: 0.001
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSensitivity: 0.001
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+--- !u!114 &1673914528845359768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303757023163030372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Object.NetworkObject
+  NetworkObserver: {fileID: 0}
+  _enablePrediction: 1
+  _predictionType: 1
+  _localReconcileCorrectionType: 2
+  _graphicalObject: {fileID: 5749015968660651184}
+  _detachGraphicalObject: 0
+  _enableStateForwarding: 1
+  _networkTransform: {fileID: 0}
+  _ownerInterpolation: 1
+  _ownerSmoothedProperties: 255
+  _adaptiveInterpolation: 3
+  _spectatorSmoothedProperties: 255
+  _spectatorInterpolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  <PrefabId>k__BackingField: 8
+  <SpawnableCollectionId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 6612831486392114084
+  SceneId: 0
+  SerializedTransformProperties:
+    Position: {x: -3.33466, y: -0.022, z: 1.09}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+    IsValid: 1
+  <IsNested>k__BackingField: 0
+  WasActiveDuringEdit: 0
+  WasActiveDuringEdit_Set1: 1
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  <PredictedOwner>k__BackingField: {fileID: 0}
+  NetworkBehaviours:
+  - {fileID: 3083954293888268152}
+  - {fileID: 4077026458855445763}
+  - {fileID: 1906130808478364173}
+  - {fileID: 7471741888315537379}
+  - {fileID: 3703199344278442338}
+  - {fileID: 3225008697146876222}
+  - {fileID: 5145424122112709079}
+  InitializedParentNetworkBehaviour: {fileID: 0}
+  InitializedNestedNetworkObjects: []
+  RuntimeParentNetworkBehaviour: {fileID: 0}
+  RuntimeChildNetworkBehaviours: []
+  _isNetworked: 1
+  _isSpawnable: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _preventDespawnOnDisconnect: 0
+  _defaultDespawnType: 0
+  _initializedTimestamp: -8584234054349882876
 --- !u!114 &9054290034054238412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3655,340 +3990,6 @@ MonoBehaviour:
       AlternativeTensorsOnFall: 0
       HardMatchMultiply: 1
     parentObject: {fileID: 4303757023163030372}
---- !u!114 &1906130808478364173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34c222bec13e3bc43b2bcc10bacba8d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerRagdollController
-  _componentIndexCache: 2
-  _addedNetworkObject: {fileID: 1673914528845359768}
-  _networkObjectCache: {fileID: 1673914528845359768}
---- !u!114 &7471741888315537379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4befe9e0b816d864d953c842b0586e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayerController
-  _componentIndexCache: 3
-  _addedNetworkObject: {fileID: 1673914528845359768}
-  _networkObjectCache: {fileID: 1673914528845359768}
-  _magicVFXToPrefabData:
-    _serializedList:
-    - Key:
-        element: 3
-        direction: 1
-      Value:
-        initialPosition: {fileID: 3668218671945351265}
-        followPlayer: 0
-        duration: 2
-        prefab: {fileID: 4448867310044942114, guid: a24e5c86fafb7fc4cbaf8152154a4c7a, type: 3}
-    - Key:
-        element: 3
-        direction: 2
-      Value:
-        initialPosition: {fileID: 2880242346645065208}
-        followPlayer: 0
-        duration: 2
-        prefab: {fileID: 9079461463646656299, guid: 2b31588c944e65945a786af6b87f0a12, type: 3}
-    - Key:
-        element: 3
-        direction: 3
-      Value:
-        initialPosition: {fileID: 2880242346645065208}
-        followPlayer: 1
-        duration: 10
-        prefab: {fileID: 1690259015841541202, guid: bc7a714c244d08e44af2ab5484c4bdb9, type: 3}
-    - Key:
-        element: 1
-        direction: 1
-      Value:
-        initialPosition: {fileID: 1865879742284111284}
-        followPlayer: 0
-        duration: 2
-        prefab: {fileID: 220459494885011575, guid: f33070ff186893c4a9b3cdd87e486c6b, type: 3}
-    - Key:
-        element: 1
-        direction: 2
-      Value:
-        initialPosition: {fileID: 4175944487351169333}
-        followPlayer: 0
-        duration: 2
-        prefab: {fileID: 4709357970350784659, guid: ef178c2f964c0394ab5d7d48593e0b60, type: 3}
-    - Key:
-        element: 1
-        direction: 3
-      Value:
-        initialPosition: {fileID: 2880242346645065208}
-        followPlayer: 1
-        duration: 10
-        prefab: {fileID: 1178953370205012044, guid: d85bf8e3b4a60b5498257bd67dafa85d, type: 3}
-    - Key:
-        element: 2
-        direction: 1
-      Value:
-        initialPosition: {fileID: 3668218671945351265}
-        followPlayer: 0
-        duration: 2
-        prefab: {fileID: 585958372140572181, guid: 35ddcef5a77eed346b9d7d08d33580d9, type: 3}
-    - Key:
-        element: 2
-        direction: 2
-      Value:
-        initialPosition: {fileID: 2880242346645065208}
-        followPlayer: 0
-        duration: 2
-        prefab: {fileID: 6569730060633869137, guid: 9d0ed88d12288124593937d4dbcd0116, type: 3}
-    - Key:
-        element: 2
-        direction: 3
-      Value:
-        initialPosition: {fileID: 2880242346645065208}
-        followPlayer: 1
-        duration: 10
-        prefab: {fileID: 4559115991859758748, guid: 1ac7cf413880d6e48aab8a4797b8b494, type: 3}
-  earthAura: {fileID: 4455550330690885129}
-  waterAura: {fileID: 4642433880546292324}
-  windAura: {fileID: 3533469407000647843}
---- !u!114 &1673914528845359768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Object.NetworkObject
-  NetworkObserver: {fileID: 0}
-  _enablePrediction: 1
-  _predictionType: 1
-  _localReconcileCorrectionType: 2
-  _graphicalObject: {fileID: 5749015968660651184}
-  _detachGraphicalObject: 0
-  _enableStateForwarding: 1
-  _networkTransform: {fileID: 0}
-  _ownerInterpolation: 1
-  _ownerSmoothedProperties: 255
-  _adaptiveInterpolation: 3
-  _spectatorSmoothedProperties: 255
-  _spectatorInterpolation: 2
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  <PrefabId>k__BackingField: 8
-  <SpawnableCollectionId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 6612831486392114084
-  SceneId: 0
-  SerializedTransformProperties:
-    Position: {x: -3.33466, y: -0.022, z: 1.09}
-    Rotation: {x: 0, y: 0, z: 0, w: 1}
-    Scale: {x: 1, y: 1, z: 1}
-    IsValid: 1
-  <IsNested>k__BackingField: 0
-  WasActiveDuringEdit: 0
-  WasActiveDuringEdit_Set1: 1
-  <ComponentIndex>k__BackingField: 0
-  <PredictedSpawn>k__BackingField: {fileID: 0}
-  <PredictedOwner>k__BackingField: {fileID: 0}
-  NetworkBehaviours:
-  - {fileID: 3083954293888268152}
-  - {fileID: 4077026458855445763}
-  - {fileID: 1906130808478364173}
-  - {fileID: 7471741888315537379}
-  - {fileID: 3703199344278442338}
-  - {fileID: 3225008697146876222}
-  - {fileID: 5145424122112709079}
-  InitializedParentNetworkBehaviour: {fileID: 0}
-  InitializedNestedNetworkObjects: []
-  RuntimeParentNetworkBehaviour: {fileID: 0}
-  RuntimeChildNetworkBehaviours: []
-  _isNetworked: 1
-  _isSpawnable: 1
-  _isGlobal: 0
-  _initializeOrder: 0
-  _preventDespawnOnDisconnect: 0
-  _defaultDespawnType: 0
-  _initializedTimestamp: -8584234054349882876
---- !u!114 &3703199344278442338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
-  _componentIndexCache: 4
-  _addedNetworkObject: {fileID: 1673914528845359768}
-  _networkObjectCache: {fileID: 1673914528845359768}
-  _componentConfiguration: 2
-  _synchronizeParent: 0
-  _packing:
-    Position: 1
-    Rotation: 1
-    Scale: 0
-  _useScaledTime: 1
-  _interpolation: 1
-  _extrapolation: 1
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  _clientAuthoritative: 1
-  _sendToOwner: 1
-  _interval: 1
-  _synchronizePosition: 1
-  _positionSensitivity: 0.001
-  _positionSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeRotation: 1
-  _rotationSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeScale: 1
-  _scaleSensitivity: 0.001
-  _scaleSnapping:
-    X: 0
-    Y: 0
-    Z: 0
---- !u!114 &8561910151723886659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &3225008697146876222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b4f92db1053a84428b2d9b4f0c3c951, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _componentIndexCache: 5
-  _addedNetworkObject: {fileID: 1673914528845359768}
-  _networkObjectCache: {fileID: 1673914528845359768}
-  playerHealthCanvas: {fileID: 7303437000027249280}
-  playerHealthImage: {fileID: 6508350436994615202}
-  maxHealth: 100
---- !u!54 &83450811882719951
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &4189022730077744650
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Material: {fileID: 13400000, guid: 07370bb3eb7d61e4385b47567b5977fb, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1075511
-  m_Height: 1.4885665
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.78984433, z: 0.04273033}
---- !u!114 &5145424122112709079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303757023163030372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Animating.NetworkAnimator
-  _componentIndexCache: 6
-  _addedNetworkObject: {fileID: 1673914528845359768}
-  _networkObjectCache: {fileID: 1673914528845359768}
-  IgnoredParameters: []
-  _animator: {fileID: 6603143982152622029}
-  _synchronizeWhenDisabled: 0
-  _smoothFloats: 1
-  _interpolation: 2
-  _clientAuthoritative: 1
-  _sendToOwner: 0
 --- !u!4 &5699148613944662051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -546029997918224874, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}

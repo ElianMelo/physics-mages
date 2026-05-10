@@ -1,4 +1,5 @@
 ﻿using FishNet.Component.Animating;
+using FishNet.Example.Scened;
 using FishNet.Object;
 using System.Collections;
 using System.Runtime.CompilerServices;
@@ -69,6 +70,7 @@ public class PlayerMovementController : NetworkBehaviour
     private Animator _animator;
     private NetworkAnimator _animatorNetwork;
     private PlayerRagdollController _ragdoll;
+    private PlayerController _playerController;
     private PlayerInput _playerInput;
     private Camera _mainCamera;
 
@@ -137,6 +139,7 @@ public class PlayerMovementController : NetworkBehaviour
         _animator = GetComponent<Animator>();
         _animatorNetwork = GetComponent<NetworkAnimator>();
         _ragdoll = GetComponent<PlayerRagdollController>();
+        _playerController = GetComponent<PlayerController>();
 
         // Prevent the physics engine from tumbling the character.
         // Rotation is controlled manually in SmoothRotateToCamera().
@@ -210,13 +213,17 @@ public class PlayerMovementController : NetworkBehaviour
     public void OnJump(InputValue value)
     {
         if (dashing) return;
-        if (value.isPressed && _isGrounded && !_jumping)
-            Jump();
+        if (!value.isPressed) return;
+        if (!_isGrounded) return;
+        // if (_playerController.Stamina < 20f) return;
+        // _playerController.UpdateStamina(-20f);
+        Jump();
     }
 
     public void OnDash(InputValue value)
     {
-        if (value.isPressed) _dashRequested = true;
+        if (!value.isPressed) return;
+            _dashRequested = true;
     }
 
     // =========================================================================

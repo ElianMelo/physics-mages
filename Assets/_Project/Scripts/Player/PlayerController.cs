@@ -121,6 +121,7 @@ public class PlayerController : NetworkBehaviour
     [ServerRpc]
     private void UpdateManaServer(float amount)
     {
-        mana.Value -= amount;
+        if (mana.Value + amount > maxMana) return;
+        mana.Value += amount;
     }
 }

@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class PlayerFeedbackInterfaceController : MonoBehaviour
 {
     public TMP_Text manaValue;
+    public List<ManaOrb> manaOrbList = new();
 
     private void Awake()
     {
@@ -17,6 +19,9 @@ public class PlayerFeedbackInterfaceController : MonoBehaviour
 
     private void UpdateMana(float value)
     {
-        manaValue.text = value.ToString();
+        for (int i = 0; i < manaOrbList.Count; i++)
+        {
+            manaOrbList[i].UpdateOrbPercentage(value - i);
+        }
     }
 }

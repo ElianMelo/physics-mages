@@ -2151,7 +2151,7 @@ MonoBehaviour:
   healthCanvas: {fileID: 7303437000027249280}
   healthImage: {fileID: 6508350436994615202}
   maxHealth: 100
-  maxMana: 100
+  maxMana: 6
 --- !u!54 &83450811882719951
 Rigidbody:
   m_ObjectHideFlags: 0

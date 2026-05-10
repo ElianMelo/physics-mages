@@ -55,6 +55,16 @@ public class PlayerMagicController : NetworkBehaviour
         playerRagdollController = GetComponent<PlayerRagdollController>();
         animator = GetComponent<NetworkAnimator>();    
     }
+    public override void OnStartClient()
+    {
+        if (!IsOwner) return;
+        StartCoroutine(RecoverRoutine());
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 
     void Update()
     {
@@ -62,11 +72,20 @@ public class PlayerMagicController : NetworkBehaviour
         GetMagicInput();
     }
 
+    IEnumerator RecoverRoutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(0.3f);
+            playerController.UpdateMana(0.1f);
+        }
+    }
+
     private void GetMagicInput()
     {
         if (_isPerformingMagicAnimation) return;
         if (playerRagdollController.IsStaggered) return;
-        if (playerController.Mana < 10f) return;
+        if (playerController.Mana < 1f) return;
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (_currentPhase == MagicChoosePhase.Element)
@@ -132,7 +151,7 @@ public class PlayerMagicController : NetworkBehaviour
     {
         _isPerformingMagicAnimation = true;
         _isInSafeCheck = true;
-        playerController.UpdateMana(10f);
+        playerController.UpdateMana(-1f);
         playerVFXController.ChangeAuraRpc(MagicElement.None);
         if (safeCheckRoutine != null) StopCoroutine(safeCheckRoutine);
         safeCheckRoutine = StartCoroutine(AnimationSafeCheck());

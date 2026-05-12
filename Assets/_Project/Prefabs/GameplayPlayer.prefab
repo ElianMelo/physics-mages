@@ -507,15 +507,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.33466
+      value: 949.79193
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.022
+      value: 899.2213
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 447811f6b96cfff4b8d2da784a237665, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2003,10 +2003,14 @@ MonoBehaviour:
   airMultiplier: 0.4
   maxSlopeAngle: 45
   smoothFollowMoveDirectionFactor: 0.08
-  groundCheckOffset: {x: 0, y: 0.38, z: 0}
-  groundCheckRadius: 0.27
-  groundCheckDistance: 0.13
+  groundCheckOffset: {x: 0, y: 0.44, z: 0}
+  groundCheckRadius: 0.16
+  groundCheckDistance: 0.32
+  wallCheckDistance: 0.32
   groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallLayer:
     serializedVersion: 2
     m_Bits: 64
   diving: 0
@@ -2145,7 +2149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4f92db1053a84428b2d9b4f0c3c951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _componentIndexCache: 5
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1673914528845359768}
   _networkObjectCache: {fileID: 1673914528845359768}
   healthCanvas: {fileID: 7303437000027249280}
@@ -2267,7 +2271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Animating.NetworkAnimator
-  _componentIndexCache: 6
+  _componentIndexCache: 5
   _addedNetworkObject: {fileID: 1673914528845359768}
   _networkObjectCache: {fileID: 1673914528845359768}
   IgnoredParameters: []
@@ -2289,7 +2293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
-  _componentIndexCache: 4
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1673914528845359768}
   _networkObjectCache: {fileID: 1673914528845359768}
   _componentConfiguration: 2
@@ -2355,7 +2359,7 @@ MonoBehaviour:
   <AssetPathHash>k__BackingField: 6612831486392114084
   SceneId: 0
   SerializedTransformProperties:
-    Position: {x: -3.33466, y: -0.022, z: 1.09}
+    Position: {x: 949.79193, y: 899.2213, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     Scale: {x: 1, y: 1, z: 1}
     IsValid: 1
@@ -2370,9 +2374,9 @@ MonoBehaviour:
   - {fileID: 4077026458855445763}
   - {fileID: 1906130808478364173}
   - {fileID: 7471741888315537379}
-  - {fileID: 3703199344278442338}
   - {fileID: 3225008697146876222}
   - {fileID: 5145424122112709079}
+  - {fileID: 3703199344278442338}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -2383,7 +2387,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584234054349882876
+  _initializedTimestamp: -8584230634946733111
 --- !u!114 &9054290034054238412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2629,7 +2633,7 @@ MonoBehaviour:
     MaxDepenetrationVelocity: 0
     ProjectionMode: 0
     PreProcessing: 0
-    RagdollBlend: 1
+    RagdollBlend: 0.8
     animatingMode: 1
     UseReconstruction: 0
     UnitySolverIterations: 12

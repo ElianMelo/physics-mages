@@ -58,7 +58,6 @@ public class PlayerMagicController : NetworkBehaviour
     public override void OnStartClient()
     {
         if (!IsOwner) return;
-        StartCoroutine(RecoverRoutine());
     }
 
     private void OnDestroy()
@@ -70,15 +69,6 @@ public class PlayerMagicController : NetworkBehaviour
     {
         if (!IsOwner) return;
         GetMagicInput();
-    }
-
-    IEnumerator RecoverRoutine()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(0.3f);
-            playerController.UpdateMana(0.1f);
-        }
     }
 
     private void GetMagicInput()

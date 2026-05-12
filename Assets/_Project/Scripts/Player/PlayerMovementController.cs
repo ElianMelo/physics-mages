@@ -63,7 +63,10 @@ public class PlayerMovementController : NetworkBehaviour
     public float groundCheckRadius = 0.25f;
     /// <summary>How far below groundCheckOffset to cast before giving up.</summary>
     public float groundCheckDistance = 0.15f;
+    public float wallCheckDistance = 0.15f;
     public LayerMask groundLayer;
+    public LayerMask wallLayer;
+
 
     // ─── References ──────────────────────────────────────────────────────────
     private Rigidbody _rb;
@@ -80,6 +83,7 @@ public class PlayerMovementController : NetworkBehaviour
     // ─── State flags ─────────────────────────────────────────────────────────
     private bool _canMove = true;
     private bool _isGrounded;
+    private bool _isTouchingWall;
     private bool _jumping;
     private bool _dashRequested;
     private float _dashCooldownTimer;
@@ -89,6 +93,7 @@ public class PlayerMovementController : NetworkBehaviour
 
     // ─── Slope normal ────────────────────────────────────────────────────────
     private Vector3 _groundNormal = Vector3.up;
+    private Vector3 _wallNormal = Vector3.up;
 
     // ─── Movement state ──────────────────────────────────────────────────────
     public MovementState state;
@@ -214,16 +219,29 @@ public class PlayerMovementController : NetworkBehaviour
     {
         if (dashing) return;
         if (!value.isPressed) return;
-        if (!_isGrounded) return;
-        // if (_playerController.Stamina < 20f) return;
-        // _playerController.UpdateStamina(-20f);
+        if (_isGrounded)
+        {
+            Jump();
+            return;
+        }
+        if(_isTouchingWall)
+        {
+            Jump();
+            return;
+        }
+        if (_playerController.Stamina < 20f) return;
+        _playerController.UpdateStamina(-20f);
         Jump();
     }
 
     public void OnDash(InputValue value)
     {
+        if (dashing) return;
         if (!value.isPressed) return;
-            _dashRequested = true;
+        if (_dashCooldownTimer > 0f) return;
+        if (_playerController.Stamina < 20f) return;
+        _playerController.UpdateStamina(-20f);
+        _dashRequested = true;
     }
 
     // =========================================================================
@@ -231,31 +249,63 @@ public class PlayerMovementController : NetworkBehaviour
     // =========================================================================
 
     /// <summary>
-    /// Casts a sphere downward from the foot position.
-    /// Populates _isGrounded and _groundNormal each FixedUpdate.
-    /// Using a SphereCast rather than a point cast gives reliable results on
-    /// slightly uneven surfaces without relying on a CharacterController capsule.
+    /// Ground + wall detection for movement and wall jumping.
+    /// SphereCast handles uneven floors reliably.
+    /// Raycasts detect nearby walls for wall jump direction.
     /// </summary>
     private void CheckGround()
     {
         Vector3 origin = transform.TransformPoint(groundCheckOffset);
 
+        // ---------- GROUND CHECK ----------
         if (Physics.SphereCast(
                 origin,
                 groundCheckRadius,
                 Vector3.down,
-                out RaycastHit hit,
+                out RaycastHit groundHit,
                 groundCheckDistance,
                 groundLayer,
                 QueryTriggerInteraction.Ignore))
         {
             _isGrounded = true;
-            _groundNormal = hit.normal;
+            _groundNormal = groundHit.normal;
         }
         else
         {
             _isGrounded = false;
             _groundNormal = Vector3.up;
+        }
+
+        // ---------- WALL CHECK ----------
+        _isTouchingWall = false;
+        _wallNormal = Vector3.zero;
+
+        Vector3[] directions =
+        {
+            transform.right,
+            -transform.right,
+            transform.forward,
+            -transform.forward
+        };
+
+        foreach (Vector3 dir in directions)
+        {
+            if (Physics.Raycast(
+                    origin,
+                    dir,
+                    out RaycastHit wallHit,
+                    wallCheckDistance,
+                    wallLayer,
+                    QueryTriggerInteraction.Ignore))
+            {
+                // Prevent floor from being treated as wall
+                if (Vector3.Angle(wallHit.normal, Vector3.up) > 60f)
+                {
+                    _isTouchingWall = true;
+                    _wallNormal = wallHit.normal;
+                    break;
+                }
+            }
         }
     }
 
@@ -266,8 +316,13 @@ public class PlayerMovementController : NetworkBehaviour
     private void Jump()
     {
         // Zero out vertical velocity first so double-jump height is consistent.
+        Vector3 jumpDirection = Vector3.up;
+        if(_isTouchingWall)
+        {
+            jumpDirection = (_wallNormal + Vector3.up).normalized * 2;
+        }
         _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, 0f, _rb.linearVelocity.z);
-        _rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        _rb.AddForce(jumpDirection * jumpForce, ForceMode.VelocityChange);
 
         _jumping = true;
         _animatorNetwork.SetTrigger(AnimJump);

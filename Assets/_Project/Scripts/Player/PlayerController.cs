@@ -1,3 +1,4 @@
+using FishNet.Example.Scened;
 using FishNet.Managing.Server;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
@@ -51,11 +52,22 @@ public class PlayerController : NetworkBehaviour
         stamina.OnChange += OnStaminaChange;
         if (!IsOwner) return;
         healthCanvas.SetActive(false);
+        StartCoroutine(RecoverRoutine());
     }
 
     private void Update()
     {
         if (!IsOwner) return;
+    }
+
+    IEnumerator RecoverRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.3f);
+            UpdateMana(0.05f);
+            UpdateStamina(2f);
+        }
     }
 
     private void OnHealthChange(float prev, float next, bool asServer)

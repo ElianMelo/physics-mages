@@ -6,7 +6,9 @@ public class TrapController : MonoBehaviour
     {
         PlayerController playerController = other.GetComponent<PlayerController>();
         if (playerController == null) return;
+        PlayerRagdollController playerRagdollController = playerController.GetComponent<PlayerRagdollController>();
         playerController.ReceiveDamage();
+        playerRagdollController.TriggerFall((other.transform.position - transform.position).normalized, 50f);
     }
 
     private void OnCollisionEnter(Collision collision)

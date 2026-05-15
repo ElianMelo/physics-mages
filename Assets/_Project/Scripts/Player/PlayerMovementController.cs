@@ -78,7 +78,7 @@ public class PlayerMovementController : NetworkBehaviour
     private Camera _mainCamera;
 
     // ─── Input ───────────────────────────────────────────────────────────────
-    private Vector2 _inputDir;
+    private Vector2 _movementDirection;
 
     // ─── State flags ─────────────────────────────────────────────────────────
     private bool _canMove = true;
@@ -213,7 +213,7 @@ public class PlayerMovementController : NetworkBehaviour
     // =========================================================================
 
     public void OnMove(InputValue value)
-        => _inputDir = value.Get<Vector2>();
+        => _movementDirection = value.Get<Vector2>();
 
     public void OnJump(InputValue value)
     {
@@ -351,8 +351,8 @@ public class PlayerMovementController : NetworkBehaviour
         camForward.Normalize();
         Vector3 camRight = Vector3.Cross(Vector3.up, camForward);
 
-        Vector3 dashDir = _inputDir.sqrMagnitude > 0.01f
-            ? (camForward * _inputDir.y + camRight * _inputDir.x).normalized
+        Vector3 dashDir = _movementDirection.sqrMagnitude > 0.01f
+            ? (camForward * _movementDirection.y + camRight * _movementDirection.x).normalized
             : transform.forward;
 
         transform.forward = dashDir;
@@ -526,7 +526,7 @@ public class PlayerMovementController : NetworkBehaviour
         camForward.Normalize();
         Vector3 camRight = Vector3.Cross(Vector3.up, camForward);
 
-        Vector3 wishDir = camForward * _inputDir.y + camRight * _inputDir.x;
+        Vector3 wishDir = camForward * _movementDirection.y + camRight * _movementDirection.x;
 
         // Project onto slope so the character doesn't fight the normal.
         if (_isGrounded && OnSlope())
@@ -607,10 +607,10 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void UpdateAnimations()
     {
-        bool isRunning = state == MovementState.running && _inputDir.sqrMagnitude > 0.01f;
+        bool isRunning = state == MovementState.running && _movementDirection.sqrMagnitude > 0.01f;
 
-        _animator.SetFloat("x", _inputDir.x);
-        _animator.SetFloat("y", _inputDir.y);
+        _animator.SetFloat("x", _movementDirection.x);
+        _animator.SetFloat("y", _movementDirection.y);
         _animator.SetBool(AnimRunning, isRunning);
         _animator.SetBool(AnimDashing, dashing);
         _animator.SetBool(AnimFalling, state == MovementState.airing);
@@ -624,7 +624,7 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void ResetMovement()
     {
-        _inputDir = Vector2.zero;
+        _movementDirection = Vector2.zero;
         _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
     }
 

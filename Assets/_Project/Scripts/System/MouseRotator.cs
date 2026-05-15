@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
 
 public class MouseRotator : MonoBehaviour
 {
@@ -22,6 +18,8 @@ public class MouseRotator : MonoBehaviour
     public float speed = 1f;
     // public Transform playerTransform;
 
+    private Vector2 _inputDir;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -30,11 +28,12 @@ public class MouseRotator : MonoBehaviour
     private void FixedUpdate()
     {
         if (GameManager.Instance.currentGameState == GameManager.GameState.Drawing) return;
+        if (PlayerController.Instance == null) return;
         //if (Input.GetKeyDown(KeyCode.F))
         //{
         //    Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
         //}
-        _look = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y") * -1);
+        _look = new Vector2(PlayerController.Instance.lookDirection.x, PlayerController.Instance.lookDirection.y * -1);
         #region Player Based Rotation
 
         //Move the player based on the X input on the controller

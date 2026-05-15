@@ -5,6 +5,7 @@ using FishNet.Object.Synchronizing;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerController : NetworkBehaviour
@@ -16,6 +17,8 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private float maxStamina;
 
     public PlayerVFXController playerVFXController { get; private set; }
+
+    public static PlayerController Instance { get; private set; }
 
     private readonly SyncVar<float> health = new SyncVar<float>(new SyncTypeSettings(1f));
     private readonly SyncVar<float> mana = new SyncVar<float>(new SyncTypeSettings(0.1f));
@@ -36,6 +39,8 @@ public class PlayerController : NetworkBehaviour
 
     private Coroutine _shieldCoroutine;
 
+    [HideInInspector] public Vector2 lookDirection;
+
     private void Awake()
     {
         playerVFXController = GetComponent<PlayerVFXController>();
@@ -51,9 +56,13 @@ public class PlayerController : NetworkBehaviour
         mana.OnChange += OnManaChange;
         stamina.OnChange += OnStaminaChange;
         if (!IsOwner) return;
+        Instance = this;
         healthCanvas.SetActive(false);
         StartCoroutine(RecoverRoutine());
     }
+
+    public void OnLook(InputValue value)
+        => lookDirection = value.Get<Vector2>();
 
     private void Update()
     {
